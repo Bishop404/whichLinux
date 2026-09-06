@@ -14,6 +14,7 @@ npm run dev        # http://localhost:5173
 npm test           # engine, i18n, URL state, and a full DOM walkthrough
 npm run build      # -> dist/
 npm run preview
+npm run logos      # regenerate the Simple Icons logo files
 ```
 
 Deploy by uploading the contents of `dist/` to any static host. `.htaccess`

@@ -138,5 +138,8 @@ export function renderResults(result: Recommendation): HTMLElement {
 
     el("p", { class: "disclaimer", text: t("result.disclaimer") }),
     el("p", { class: "reviewed", text: t("result.reviewed", { date: reviewed }) }),
+    // Nominative use of these marks depends on not implying endorsement, so the
+    // disclaimer belongs in front of visitors, not only in the repo.
+    el("p", { class: "reviewed", text: t("result.trademarks") }),
   ]);
 }

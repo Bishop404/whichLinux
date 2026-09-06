@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 import en from "../src/i18n/locales/en.json";
@@ -70,9 +71,11 @@ describe("i18n", () => {
     expect(mismatched).toEqual([]);
   });
 
-  it("every distro points at a logo and a review date", () => {
+  it("every distro points at a logo that exists and a review date", () => {
     for (const distro of distros) {
       expect(distro.logo, distro.id).toMatch(/^logos\/.+\.svg$/);
+      // A missing file degrades to an empty chip in the browser, silently.
+      expect(existsSync(`public/${distro.logo}`), `missing public/${distro.logo}`).toBe(true);
       expect(distro.lastReviewed, distro.id).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
   });

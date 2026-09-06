@@ -77,6 +77,7 @@
   "result.edition": "Edycja {desktop}",
   "result.reviewed": "Dane o dystrybucjach sprawdzone {date}.",
   "result.disclaimer": "To punkt wyjścia, nie wyrok. Każda z tych opcji to dobry system — jeśli pierwsza nie przypadnie Ci do gustu, alternatywy naprawdę warto wypróbować.",
+  "result.trademarks": "Logotypy są znakami towarowymi odpowiednich projektów. Ta strona nie jest z nimi powiązana ani przez nie wspierana.",
   "result.relaxed": "Nic nie pasowało do wszystkich odpowiedzi, więc to najbliższe dopasowania. Musieliśmy nagiąć: {what}.",
   "result.relaxed.terminal": "oczekiwania wobec terminala",
   "result.relaxed.ram": "ilość pamięci",

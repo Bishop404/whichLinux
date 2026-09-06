@@ -10,10 +10,13 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "logos": "node scripts/generate-logos.mjs"
   },
   "devDependencies": {
+    "@types/node": "^26.4.1",
     "jsdom": "^30.0.1",
+    "simple-icons": "^16.30.0",
     "typescript": "^5.9.2",
     "vite": "^7.1.4",
     "vitest": "^3.2.4"
