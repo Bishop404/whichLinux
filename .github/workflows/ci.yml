@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Typecheck, the full suite, and the production build.
+      #
+      # The suite is doing more than guarding refactors here: it sweeps every
+      # reachable answer set to prove the recommender never returns nothing,
+      # never gives up on the architecture constraint, and never contains a
+      # distro that no answer can reach. It also checks that every logo is still
+      # byte-identical to what its project published, which is what the
+      # licensing position rests on.
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build

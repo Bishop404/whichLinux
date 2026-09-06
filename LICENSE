@@ -1,0 +1,53 @@
+MIT License
+
+Copyright (c) 2026 Bishop
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------------
+
+THIRD-PARTY CONTENT — NOT COVERED BY THE MIT LICENCE ABOVE
+
+The MIT licence above applies to the source code of this project. It does NOT
+apply to the distribution logos, which are the property of their respective
+projects and are included here under their own terms.
+
+Affected files:
+
+  public/logos/*.svg    the logo files themselves
+  src/data/logos.ts     generated; contains verbatim copies of those same files
+
+Those marks are aggregated with this software, not relicensed by it. Each keeps
+the licence it arrived with, including:
+
+  Debian            CC BY-SA 3.0
+  MX Linux          GPL-3.0-only
+  Omarchy           MIT
+  Bazzite           Apache-2.0 (must not be modified — see its press kit)
+  Fedora            Red Hat brand guidelines; not an open licence
+  Ubuntu Studio     public domain (below the threshold of originality)
+  all others        CC0-1.0, via Simple Icons
+
+Separately from copyright, the distribution names and logos are trademarks of
+their respective owners. No licence granted here extends to any trademark. This
+project is not affiliated with, nor endorsed by, any of the distributions it
+recommends.
+
+Full provenance, per-file licences and the reasoning behind this use are
+documented in public/logos/LOGOS.md.

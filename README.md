@@ -84,3 +84,22 @@ Language is chosen by `?lang=`, then a remembered choice, then the browser.
 - **Distro facts go stale.** Each record carries `lastReviewed`, and the result
   page shows it. Re-check the dataset periodically; minimum memory, release
   models and NVIDIA handling all drift.
+
+## Licence
+
+The code is [MIT](LICENSE).
+
+The distribution logos are **not**. They belong to their respective projects and
+are included under their own terms — Debian's is CC BY-SA 3.0, MX Linux's is
+GPL-3.0, Fedora's follows Red Hat's brand guidelines, and Bazzite's may not be
+modified at all. Every file is shipped byte-identical to what its project
+published, and `test/logos.test.ts` enforces that, because it is what those terms
+require. This applies to `public/logos/*.svg` and to the verbatim copies inlined
+into `src/data/logos.ts`.
+
+Trademark is a separate question from copyright, and no licence here extends to
+one. The names and marks are used to identify the products being recommended.
+**This project is not affiliated with, nor endorsed by, any of the distributions
+it recommends** — a notice the site also shows to visitors.
+
+Provenance and per-file licences: [`public/logos/LOGOS.md`](public/logos/LOGOS.md).

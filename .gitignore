@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.local
 .DS_Store
+
+# Machine-local tool settings, and the temp files they leave behind.
+.claude/
+
