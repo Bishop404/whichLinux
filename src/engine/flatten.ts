@@ -7,7 +7,7 @@ import type { Desktop, Distro, Edition, Familiarity } from "./types";
  */
 export type FlatCandidate = Record<string, unknown>;
 
-const NO_FAMILIARITY: Familiarity = { win11: 0, win7: 0, macos: 0, chromeos: 0 };
+const NO_FAMILIARITY: Familiarity = { win11: 0, win7: 0, macos: 0 };
 
 /** Memory the edition actually needs: the edition overrides the distro default. */
 export function effectiveRam(distro: Distro, edition: Edition): number {
@@ -58,7 +58,6 @@ export function flatten(
     "familiarity.win11": familiarity.win11,
     "familiarity.win7": familiarity.win7,
     "familiarity.macos": familiarity.macos,
-    "familiarity.chromeos": familiarity.chromeos,
 
     effectiveRamMinMb: ram,
     weightClass: weightClass(ram),

@@ -19,7 +19,7 @@ for (const device of opts("device"))
      for (const terminal of device === "server" ? [null] : opts("terminal"))
       for (const familiarity of device === "server" ? [null] : opts("familiarity"))
        for (const customize of device === "server" ? [null] : opts("customize"))
-        for (const gpu of arch === "x86" ? opts("gpu") : [null]) {
+        for (const gpu of arch === "x86" || arch === "unsure" ? opts("gpu") : [null]) {
           const a: Answers = { device:[device], arch:[arch], ram:[ram], stability:[stability], use };
           if (terminal) a.terminal = [terminal];
           if (familiarity) a.familiarity = [familiarity];

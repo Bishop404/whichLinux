@@ -29,7 +29,6 @@ export interface Familiarity {
   win11: number;
   win7: number;
   macos: number;
-  chromeos: number;
 }
 
 export interface Desktop {

@@ -1,12 +1,102 @@
 [
-  { "id": "cinnamon", "familiarity": { "win11": 2, "win7": 3, "macos": 0, "chromeos": 1 }, "ramMinMb": 1500, "customizable": 3 },
-  { "id": "kde",      "familiarity": { "win11": 3, "win7": 3, "macos": 1, "chromeos": 1 }, "ramMinMb": 1800, "customizable": 5 },
-  { "id": "gnome",    "familiarity": { "win11": 1, "win7": 0, "macos": 3, "chromeos": 2 }, "ramMinMb": 2000, "customizable": 2 },
-  { "id": "xfce",     "familiarity": { "win11": 1, "win7": 3, "macos": 0, "chromeos": 1 }, "ramMinMb": 800,  "customizable": 4 },
-  { "id": "lxqt",     "familiarity": { "win11": 1, "win7": 2, "macos": 0, "chromeos": 1 }, "ramMinMb": 600,  "customizable": 3 },
-  { "id": "mate",     "familiarity": { "win11": 1, "win7": 3, "macos": 0, "chromeos": 1 }, "ramMinMb": 900,  "customizable": 3 },
-  { "id": "budgie",   "familiarity": { "win11": 1, "win7": 1, "macos": 2, "chromeos": 2 }, "ramMinMb": 1500, "customizable": 2 },
-  { "id": "cosmic",   "familiarity": { "win11": 1, "win7": 0, "macos": 2, "chromeos": 1 }, "ramMinMb": 2000, "customizable": 3 },
-  { "id": "pantheon", "familiarity": { "win11": 0, "win7": 0, "macos": 3, "chromeos": 1 }, "ramMinMb": 1500, "customizable": 1 },
-  { "id": "hyprland", "familiarity": { "win11": 0, "win7": 0, "macos": 0, "chromeos": 0 }, "ramMinMb": 700,  "customizable": 5 }
+  {
+    "id": "cinnamon",
+    "familiarity": {
+      "win11": 2,
+      "win7": 3,
+      "macos": 0
+    },
+    "ramMinMb": 1500,
+    "customizable": 3
+  },
+  {
+    "id": "kde",
+    "familiarity": {
+      "win11": 3,
+      "win7": 3,
+      "macos": 1
+    },
+    "ramMinMb": 1800,
+    "customizable": 5
+  },
+  {
+    "id": "gnome",
+    "familiarity": {
+      "win11": 1,
+      "win7": 0,
+      "macos": 3
+    },
+    "ramMinMb": 2000,
+    "customizable": 2
+  },
+  {
+    "id": "xfce",
+    "familiarity": {
+      "win11": 1,
+      "win7": 3,
+      "macos": 0
+    },
+    "ramMinMb": 800,
+    "customizable": 4
+  },
+  {
+    "id": "lxqt",
+    "familiarity": {
+      "win11": 1,
+      "win7": 2,
+      "macos": 0
+    },
+    "ramMinMb": 600,
+    "customizable": 3
+  },
+  {
+    "id": "mate",
+    "familiarity": {
+      "win11": 1,
+      "win7": 3,
+      "macos": 0
+    },
+    "ramMinMb": 900,
+    "customizable": 3
+  },
+  {
+    "id": "budgie",
+    "familiarity": {
+      "win11": 1,
+      "win7": 1,
+      "macos": 2
+    },
+    "ramMinMb": 1500,
+    "customizable": 2
+  },
+  {
+    "id": "cosmic",
+    "familiarity": {
+      "win11": 1,
+      "win7": 0,
+      "macos": 2
+    },
+    "ramMinMb": 2000,
+    "customizable": 3
+  },
+  {
+    "id": "pantheon",
+    "familiarity": {
+      "win11": 0,
+      "win7": 0,
+      "macos": 3
+    },
+    "ramMinMb": 1500,
+    "customizable": 1
+  },
+  {
+    "id": "hyprland",
+    "familiarity": {
+      "win11": 0,
+      "win7": 0,
+      "macos": 0
+    },
+    "ramMinMb": 700,
+    "customizable": 5
+  }
 ]

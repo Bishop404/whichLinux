@@ -62,7 +62,7 @@ describe("the app, end to end", () => {
     document.querySelector<HTMLButtonElement>(".btn--primary")!.click();
     await settle();
 
-    await pick("Intel");
+    await pick("No, or I'm not sure");
 
     const name = document.querySelector(".pick__name")?.textContent;
     expect(name).toBe("Linux Mint");

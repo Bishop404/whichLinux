@@ -30,7 +30,7 @@ describe("persona goldens", () => {
     const best = top(a({
       device: "desktop", arch: "x86", ram: "8plus", terminal: "never",
       stability: "stable", familiarity: "win7", customize: "no",
-      use: "officeWeb", gpu: "intel",
+      use: "officeWeb", gpu: "other",
     }));
     expect(best.distro.id).toBe("mint");
     expect(best.edition.de).toBe("cinnamon");
@@ -40,7 +40,7 @@ describe("persona goldens", () => {
     const best = top(a({
       device: "desktop", arch: "x86", ram: "under4", terminal: "never",
       stability: "stable", familiarity: "win7", customize: "no",
-      use: "officeWeb", gpu: "intel",
+      use: "officeWeb", gpu: "other",
     }));
     expect(["mx", "lubuntu", "mint"]).toContain(best.distro.id);
     expect(["xfce", "lxqt", "mate"]).toContain(best.edition.de);
@@ -56,7 +56,7 @@ describe("persona goldens", () => {
     const best = top(a({
       device: "console", arch: "x86", ram: "8plus", terminal: "never",
       stability: "stable", familiarity: "none", customize: "no",
-      use: "gaming", gpu: "amd",
+      use: "gaming", gpu: "other",
     }));
     expect(best.distro.id).toBe("bazzite");
   });
@@ -97,7 +97,7 @@ describe("persona goldens", () => {
     // Both are gaming-first, so stability alone does not tell them apart:
     // Bazzite's whole point is that it is hands-off, which keeps winning for a
     // user who wants out-of-the-box. CachyOS is for someone who wants to tune it.
-    const base = { device: "console", arch: "x86", ram: "8plus", familiarity: "none", use: "gaming", gpu: "amd" };
+    const base = { device: "console", arch: "x86", ram: "8plus", familiarity: "none", use: "gaming", gpu: "other" };
 
     expect(top(a({ ...base, terminal: "never", stability: "stable", customize: "no" })).distro.id)
       .toBe("bazzite");
@@ -109,7 +109,7 @@ describe("persona goldens", () => {
     const best = top(a({
       device: "desktop", arch: "x86", ram: "8plus", terminal: "paste",
       stability: "stable", familiarity: "win11", customize: "no",
-      use: "creative", gpu: "amd",
+      use: "creative", gpu: "other",
     }));
     expect(best.distro.id).toBe("ubuntu-studio");
   });
@@ -118,7 +118,7 @@ describe("persona goldens", () => {
     const best = top(a({
       device: "desktop", arch: "x86", ram: "8plus", terminal: "tinker",
       stability: "fresh", familiarity: "none", customize: "yes",
-      use: "dev", gpu: "amd",
+      use: "dev", gpu: "other",
     }));
     expect(best.distro.id).toBe("omarchy");
   });
@@ -127,7 +127,7 @@ describe("persona goldens", () => {
     const ids = topIds(a({
       device: "desktop", arch: "x86", ram: "8plus", terminal: "paste",
       stability: "fresh", familiarity: "none", customize: "yes",
-      use: "dev", gpu: "amd",
+      use: "dev", gpu: "other",
     }));
     expect(ids).not.toContain("omarchy");
     expect(["fedora", "popos", "opensuse-tumbleweed", "manjaro", "cachyos"]).toContain(ids[0]);
@@ -189,7 +189,7 @@ function* everyAnswerSet(): Generator<Answers> {
             for (const terminal of device === "server" ? [null] : q.get("terminal")!)
               for (const familiarity of device === "server" ? [null] : q.get("familiarity")!)
                 for (const customize of device === "server" ? [null] : q.get("customize")!)
-                  for (const gpu of arch === "x86" ? q.get("gpu")! : [null]) {
+                  for (const gpu of arch === "x86" || arch === "unsure" ? q.get("gpu")! : [null]) {
                     const answers: Answers = { device: [device], arch: [arch], ram: [ram], stability: [stability], use };
                     if (terminal) answers.terminal = [terminal];
                     if (familiarity) answers.familiarity = [familiarity];
@@ -246,7 +246,7 @@ describe("explanations", () => {
     const best = top(a({
       device: "desktop", arch: "x86", ram: "8plus", terminal: "never",
       stability: "stable", familiarity: "win7", customize: "no",
-      use: "officeWeb", gpu: "intel",
+      use: "officeWeb", gpu: "other",
     }));
     expect(best.reasons.length).toBeGreaterThan(2);
     const magnitudes = best.reasons.map((r) => Math.abs(r.value));

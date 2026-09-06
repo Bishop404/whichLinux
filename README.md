@@ -17,6 +17,7 @@ npm run preview
 npm run logos      # regenerate the Simple Icons logo files
 npm run coverage   # sweep every answer set: who wins, and where the fit is weak
 npm run wins mint  # show exactly which answers lead to one distro
+npm run influence  # how often each question actually changes the answer
 ```
 
 Deploy by uploading the contents of `dist/` to any static host. `.htaccess`

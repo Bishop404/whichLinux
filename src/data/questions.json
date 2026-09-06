@@ -349,21 +349,6 @@
         ]
       },
       {
-        "id": "chromeos",
-        "weights": [
-          {
-            "attr": "familiarity.chromeos",
-            "values": {
-              "0": 0,
-              "1": 1.5,
-              "2": 3,
-              "3": 4.5
-            },
-            "reason": "reason.familiar-chromeos"
-          }
-        ]
-      },
-      {
         "id": "none"
       }
     ]
@@ -494,8 +479,16 @@
   {
     "id": "gpu",
     "showIf": {
-      "q": "arch",
-      "is": "x86"
+      "any": [
+        {
+          "q": "arch",
+          "is": "x86"
+        },
+        {
+          "q": "arch",
+          "is": "unsure"
+        }
+      ]
     },
     "options": [
       {
@@ -514,13 +507,7 @@
         ]
       },
       {
-        "id": "amd"
-      },
-      {
-        "id": "intel"
-      },
-      {
-        "id": "unsure"
+        "id": "other"
       }
     ]
   }

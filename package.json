@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "logos": "node scripts/generate-logos.mjs",
     "coverage": "vite-node scripts/coverage.ts",
-    "wins": "vite-node scripts/whowins.ts"
+    "wins": "vite-node scripts/whowins.ts",
+    "influence": "vite-node scripts/influence.ts"
   },
   "devDependencies": {
     "@types/node": "^26.4.1",

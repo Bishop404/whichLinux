@@ -188,8 +188,7 @@
         "familiarity": {
           "win11": 3,
           "win7": 3,
-          "macos": 2,
-          "chromeos": 1
+          "macos": 2
         }
       }
     ],
