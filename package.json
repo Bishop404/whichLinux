@@ -1,0 +1,21 @@
+{
+  "name": "starting-linux",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Interactive questionnaire that recommends a Linux distribution and edition to newcomers.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.4",
+    "vitest": "^3.2.4"
+  }
+}

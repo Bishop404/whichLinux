@@ -1,0 +1,445 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--sans);
+  display: flex;
+  flex-direction: column;
+}
+
+/* A faint grid, for the computer-geek vibe, without shouting. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--border-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.4;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
+}
+
+:where(button, a) { font: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--surface);
+  color: var(--fg);
+  padding: 0.6rem 1rem;
+  z-index: 10;
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+.skip:focus { left: 0; }
+
+/* ---------------------------------------------------------------- header -- */
+
+.masthead {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem clamp(1rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.brand::before {
+  content: "~$";
+  font: 0.9em/1 var(--mono);
+  color: var(--accent);
+}
+
+.masthead__spacer { flex: 1; }
+
+.control {
+  background: transparent;
+  color: var(--fg-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.control:hover { color: var(--fg); border-color: var(--accent); }
+
+/* ------------------------------------------------------------------ main -- */
+
+main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 4vw, 2.5rem) 4rem;
+}
+
+/* --------------------------------------------------------------- history -- */
+
+.history { margin: 0 0 clamp(1.5rem, 5vw, 3rem); }
+
+.history__legend {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: fit-content;
+  font: 0.72rem/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--fg-muted);
+  margin-bottom: 0.7rem;
+  padding: 0.3rem 0.5rem 0.3rem 0;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.history__legend:hover { color: var(--fg); }
+
+.history__count {
+  display: grid;
+  place-items: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.history__q { color: var(--fg-muted); }
+
+.history__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Dimmed, but never below AA — plenty of this audience is on a poor screen. */
+.history__item button {
+  width: 100%;
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.5rem;
+  margin-left: -0.5rem;
+  text-align: left;
+  color: var(--fg-muted);
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.history__item button:hover { background: var(--surface-2); color: var(--fg); }
+.history__item q { quotes: none; color: var(--fg); font-weight: 500; }
+.history__item .pencil { margin-left: auto; opacity: 0; font-size: 0.78rem; }
+.history__item button:hover .pencil,
+.history__item button:focus-visible .pencil { opacity: 1; }
+
+/* -------------------------------------------------------------- question -- */
+
+.step {
+  font: 0.72rem/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--fg-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.step__bar {
+  flex: 1;
+  max-width: 12rem;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+}
+.step__bar i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.35s ease;
+}
+
+.question__title {
+  margin: 0.9rem 0 0.4rem;
+  font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  max-width: var(--measure);
+}
+
+.question__hint {
+  margin: 0 0 1.8rem;
+  color: var(--fg-muted);
+  max-width: var(--measure);
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  min-height: 3.6rem;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  background: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.12s;
+}
+.option:hover { border-color: var(--accent); transform: translateY(-1px); }
+.option[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.option__key {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font: 0.78rem/1 var(--mono);
+  color: var(--fg-muted);
+}
+.option[aria-pressed="true"] .option__key {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--fg);
+  border-radius: 999px;
+  padding: 0.6rem 1.3rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.btn:hover { border-color: var(--accent); }
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+}
+.btn--primary:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.keyhint {
+  font: 0.75rem/1.4 var(--mono);
+  color: var(--fg-muted);
+  margin-top: 1.5rem;
+}
+@media (hover: none) { .keyhint { display: none; } }
+
+/* --------------------------------------------------------------- results -- */
+
+.result__heading {
+  margin: 0 0 1.4rem;
+  font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+  letter-spacing: -0.02em;
+}
+
+.notice {
+  margin: 0 0 1.5rem;
+  padding: 0.85rem 1.1rem;
+  border-left: 3px solid var(--warn);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--surface);
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}
+
+.pick {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(1.2rem, 4vw, 2rem);
+}
+
+.pick__head {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.pick__logo {
+  flex: none;
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  padding: 0.5rem;
+}
+
+.pick__name { margin: 0; font-size: 1.6rem; letter-spacing: -0.02em; }
+
+.pick__edition {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font: 0.78rem/1 var(--mono);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+}
+
+.pick__match {
+  margin-left: auto;
+  font: 0.8rem/1 var(--mono);
+  color: var(--fg-muted);
+  text-align: right;
+}
+.pick__match b {
+  display: block;
+  font: 700 1.7rem/1.1 var(--sans);
+  color: var(--fg);
+}
+
+.pick__tagline {
+  margin: 1.1rem 0 0;
+  font-size: 1.05rem;
+  color: var(--fg-muted);
+  max-width: var(--measure);
+}
+
+.reasons { margin: 1.6rem 0 0; }
+.reasons h3 {
+  margin: 0 0 0.6rem;
+  font: 0.72rem/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--fg-muted);
+}
+.reasons ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+.reasons li { display: flex; gap: 0.6rem; align-items: baseline; }
+.reasons li::before { flex: none; font: 0.9rem/1.5 var(--mono); }
+.reasons--pos li::before { content: "✓"; color: var(--good); }
+.reasons--neg li::before { content: "!"; color: var(--warn); }
+
+.links { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.8rem; }
+.links a { text-decoration: none; }
+
+.alts { margin-top: 2.5rem; }
+.alts h2 {
+  font: 0.72rem/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--fg-muted);
+  margin: 0 0 0.9rem;
+}
+.alts__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 0.8rem;
+}
+
+.alt {
+  display: flex;
+  gap: 0.9rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.alt img { flex: none; width: 2.4rem; height: 2.4rem; }
+.alt h3 { margin: 0; font-size: 1rem; }
+.alt p { margin: 0.2rem 0 0; font-size: 0.86rem; color: var(--fg-muted); }
+.alt__why { margin-top: 0.5rem !important; color: var(--fg) !important; font-size: 0.82rem !important; }
+.alt a { color: var(--accent); font-size: 0.82rem; }
+
+.disclaimer {
+  margin: 2.5rem 0 0;
+  max-width: var(--measure);
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}
+.reviewed { margin: 0.6rem 0 0; font: 0.75rem/1.5 var(--mono); color: var(--fg-muted); }
+
+/* ---------------------------------------------------------------- motion -- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /*
+   * No `both` fill mode: with it the element keeps the animation's opacity:0
+   * start frame until the animation actually runs, so anything that stops it
+   * from starting leaves the page blank. Content must be visible by default and
+   * the animation only an embellishment on top.
+   */
+  .view { animation: rise 0.28s ease; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
+@media (max-width: 34rem) {
+  .options { grid-template-columns: 1fr; }
+  .pick__match { margin-left: 0; text-align: left; width: 100%; }
+}
+
+/*
+ * The pencil only ever appears on hover, so on a touch screen it is invisible
+ * layout: `margin-left: auto` pushed it onto its own flex line and left a blank
+ * gap under every answer.
+ */
+@media (hover: none) {
+  .history__item .pencil { display: none; }
+}

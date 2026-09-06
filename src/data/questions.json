@@ -1,0 +1,527 @@
+[
+  {
+    "id": "device",
+    "options": [
+      {
+        "id": "desktop",
+        "filters": [
+          {
+            "attr": "deviceClasses",
+            "contains": "desktop"
+          },
+          {
+            "attr": "de",
+            "nin": [
+              "none"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "server",
+        "filters": [
+          {
+            "attr": "deviceClasses",
+            "contains": "server"
+          },
+          {
+            "attr": "de",
+            "in": [
+              "none"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "console",
+        "filters": [
+          {
+            "attr": "deviceClasses",
+            "contains": "console"
+          },
+          {
+            "attr": "de",
+            "nin": [
+              "none"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "arch",
+    "options": [
+      {
+        "id": "x86",
+        "filters": [
+          {
+            "attr": "archs",
+            "contains": "x86_64"
+          }
+        ]
+      },
+      {
+        "id": "arm",
+        "filters": [
+          {
+            "attr": "archs",
+            "contains": "aarch64"
+          }
+        ]
+      },
+      {
+        "id": "apple",
+        "filters": [
+          {
+            "attr": "archs",
+            "contains": "apple-silicon"
+          }
+        ]
+      },
+      {
+        "id": "unsure",
+        "filters": [
+          {
+            "attr": "archs",
+            "contains": "x86_64"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ram",
+    "options": [
+      {
+        "id": "under4",
+        "filters": [
+          {
+            "attr": "effectiveRamMinMb",
+            "lte": 2000
+          }
+        ],
+        "weights": [
+          {
+            "attr": "weightClass",
+            "values": {
+              "light": 3,
+              "medium": 1,
+              "heavy": -2
+            },
+            "reason": "reason.lightweight"
+          }
+        ]
+      },
+      {
+        "id": "4to8",
+        "filters": [
+          {
+            "attr": "effectiveRamMinMb",
+            "lte": 4000
+          }
+        ],
+        "weights": [
+          {
+            "attr": "weightClass",
+            "values": {
+              "light": 1,
+              "medium": 1,
+              "heavy": 0
+            },
+            "reason": "reason.fits-memory"
+          }
+        ]
+      },
+      {
+        "id": "8plus"
+      },
+      {
+        "id": "unsure"
+      }
+    ]
+  },
+  {
+    "id": "terminal",
+    "showIf": {
+      "q": "device",
+      "isNot": "server"
+    },
+    "options": [
+      {
+        "id": "never",
+        "filters": [
+          {
+            "attr": "terminalRequired",
+            "lte": 3
+          }
+        ],
+        "weights": [
+          {
+            "attr": "terminalRequired",
+            "values": {
+              "1": 3,
+              "2": 1,
+              "3": -1,
+              "4": -3,
+              "5": -5
+            },
+            "reason": "reason.no-terminal"
+          },
+          {
+            "attr": "beginner",
+            "values": {
+              "1": -2,
+              "2": -1,
+              "3": 0,
+              "4": 1,
+              "5": 2
+            },
+            "reason": "reason.beginner-friendly"
+          }
+        ]
+      },
+      {
+        "id": "paste",
+        "filters": [
+          {
+            "attr": "terminalRequired",
+            "lte": 4
+          }
+        ],
+        "weights": [
+          {
+            "attr": "terminalRequired",
+            "values": {
+              "1": 1,
+              "2": 2,
+              "3": 1,
+              "4": -1,
+              "5": -3
+            },
+            "reason": "reason.some-terminal"
+          },
+          {
+            "attr": "beginner",
+            "values": {
+              "1": -1,
+              "2": 0,
+              "3": 0,
+              "4": 1,
+              "5": 1
+            },
+            "reason": "reason.beginner-friendly"
+          }
+        ]
+      },
+      {
+        "id": "tinker",
+        "weights": [
+          {
+            "attr": "tinkering",
+            "values": {
+              "1": -2,
+              "2": -1,
+              "3": 1,
+              "4": 2,
+              "5": 3
+            },
+            "reason": "reason.tinker"
+          },
+          {
+            "attr": "beginner",
+            "values": {
+              "1": 1,
+              "2": 1,
+              "3": 0,
+              "4": -1,
+              "5": -2
+            },
+            "reason": "reason.not-beginner-focused"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stability",
+    "options": [
+      {
+        "id": "stable",
+        "weights": [
+          {
+            "attr": "releaseModel",
+            "values": {
+              "lts": 3,
+              "point": 3,
+              "atomic": 2,
+              "point-fast": 0,
+              "rolling": -3
+            },
+            "reason": "reason.stable-release"
+          }
+        ]
+      },
+      {
+        "id": "balanced",
+        "weights": [
+          {
+            "attr": "releaseModel",
+            "values": {
+              "point-fast": 3,
+              "atomic": 2,
+              "rolling": 1,
+              "lts": 1,
+              "point": 0
+            },
+            "reason": "reason.balanced-release"
+          }
+        ]
+      },
+      {
+        "id": "fresh",
+        "weights": [
+          {
+            "attr": "releaseModel",
+            "values": {
+              "rolling": 3,
+              "point-fast": 2,
+              "atomic": 1,
+              "point": -2,
+              "lts": -3
+            },
+            "reason": "reason.fresh-release"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "familiarity",
+    "showIf": {
+      "q": "device",
+      "isNot": "server"
+    },
+    "options": [
+      {
+        "id": "win11",
+        "weights": [
+          {
+            "attr": "familiarity.win11",
+            "values": {
+              "0": 0,
+              "1": 1.5,
+              "2": 3,
+              "3": 4.5
+            },
+            "reason": "reason.familiar-win11"
+          }
+        ]
+      },
+      {
+        "id": "win7",
+        "weights": [
+          {
+            "attr": "familiarity.win7",
+            "values": {
+              "0": 0,
+              "1": 1.5,
+              "2": 3,
+              "3": 4.5
+            },
+            "reason": "reason.familiar-win7"
+          }
+        ]
+      },
+      {
+        "id": "macos",
+        "weights": [
+          {
+            "attr": "familiarity.macos",
+            "values": {
+              "0": 0,
+              "1": 1.5,
+              "2": 3,
+              "3": 4.5
+            },
+            "reason": "reason.familiar-macos"
+          }
+        ]
+      },
+      {
+        "id": "chromeos",
+        "weights": [
+          {
+            "attr": "familiarity.chromeos",
+            "values": {
+              "0": 0,
+              "1": 1.5,
+              "2": 3,
+              "3": 4.5
+            },
+            "reason": "reason.familiar-chromeos"
+          }
+        ]
+      },
+      {
+        "id": "none"
+      }
+    ]
+  },
+  {
+    "id": "customize",
+    "showIf": {
+      "q": "device",
+      "isNot": "server"
+    },
+    "options": [
+      {
+        "id": "yes",
+        "weights": [
+          {
+            "attr": "de.customizable",
+            "values": {
+              "0": -2,
+              "1": -2,
+              "2": -1,
+              "3": 1,
+              "4": 2,
+              "5": 3
+            },
+            "reason": "reason.customizable"
+          },
+          {
+            "attr": "tinkering",
+            "values": {
+              "1": -1,
+              "2": 0,
+              "3": 1,
+              "4": 2,
+              "5": 2
+            },
+            "reason": "reason.tinker"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "weights": [
+          {
+            "attr": "tinkering",
+            "values": {
+              "1": 2,
+              "2": 2,
+              "3": 1,
+              "4": -1,
+              "5": -2
+            },
+            "reason": "reason.out-of-box"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "use",
+    "multi": true,
+    "options": [
+      {
+        "id": "officeWeb",
+        "weights": [
+          {
+            "attr": "use.officeWeb",
+            "values": {
+              "1": -6,
+              "2": -3,
+              "3": 0,
+              "4": 3,
+              "5": 6
+            },
+            "reason": "reason.good-office"
+          }
+        ]
+      },
+      {
+        "id": "dev",
+        "weights": [
+          {
+            "attr": "use.dev",
+            "values": {
+              "1": -6,
+              "2": -3,
+              "3": 0,
+              "4": 3,
+              "5": 6
+            },
+            "reason": "reason.good-dev"
+          }
+        ]
+      },
+      {
+        "id": "creative",
+        "weights": [
+          {
+            "attr": "use.creative",
+            "values": {
+              "1": -6,
+              "2": -3,
+              "3": 0,
+              "4": 3,
+              "5": 6
+            },
+            "reason": "reason.good-creative"
+          }
+        ]
+      },
+      {
+        "id": "gaming",
+        "weights": [
+          {
+            "attr": "use.gaming",
+            "values": {
+              "1": -6,
+              "2": -3,
+              "3": 0,
+              "4": 3,
+              "5": 6
+            },
+            "reason": "reason.good-gaming"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gpu",
+    "showIf": {
+      "q": "arch",
+      "is": "x86"
+    },
+    "options": [
+      {
+        "id": "nvidia",
+        "weights": [
+          {
+            "attr": "nvidia",
+            "values": {
+              "builtin": 3,
+              "installer-optin": 2,
+              "third-party-repo": 0,
+              "manual": -2
+            },
+            "reason": "reason.nvidia"
+          }
+        ]
+      },
+      {
+        "id": "amd"
+      },
+      {
+        "id": "intel"
+      },
+      {
+        "id": "unsure"
+      }
+    ]
+  }
+]

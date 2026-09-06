@@ -1,0 +1,784 @@
+[
+  {
+    "id": "mint",
+    "family": "debian",
+    "base": "ubuntu",
+    "releaseModel": "lts",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 2000,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 1,
+    "tinkering": 2,
+    "beginner": 5,
+    "use": {
+      "officeWeb": 5,
+      "dev": 3,
+      "creative": 3,
+      "gaming": 3
+    },
+    "editions": [
+      {
+        "de": "cinnamon",
+        "official": true,
+        "downloadUrl": "https://linuxmint.com/download.php"
+      },
+      {
+        "de": "xfce",
+        "official": true,
+        "downloadUrl": "https://linuxmint.com/download.php",
+        "ramMinMb": 1500
+      },
+      {
+        "de": "mate",
+        "official": true,
+        "downloadUrl": "https://linuxmint.com/download.php",
+        "ramMinMb": 1500
+      }
+    ],
+    "homepage": "https://linuxmint.com",
+    "docsUrl": "https://linuxmint.com/documentation.php",
+    "logo": "logos/mint.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "ubuntu",
+    "family": "debian",
+    "base": null,
+    "releaseModel": "lts",
+    "archs": [
+      "x86_64",
+      "aarch64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 2,
+    "tinkering": 2,
+    "beginner": 5,
+    "use": {
+      "officeWeb": 5,
+      "dev": 4,
+      "creative": 3,
+      "gaming": 3
+    },
+    "editions": [
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://ubuntu.com/download/desktop"
+      }
+    ],
+    "homepage": "https://ubuntu.com",
+    "docsUrl": "https://help.ubuntu.com/",
+    "logo": "logos/ubuntu.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "kubuntu",
+    "family": "debian",
+    "base": "ubuntu",
+    "releaseModel": "lts",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 2,
+    "tinkering": 3,
+    "beginner": 4,
+    "use": {
+      "officeWeb": 5,
+      "dev": 4,
+      "creative": 3,
+      "gaming": 3
+    },
+    "editions": [
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://kubuntu.org/getkubuntu/"
+      }
+    ],
+    "homepage": "https://kubuntu.org",
+    "docsUrl": "https://kubuntu.org/faq/",
+    "logo": "logos/kubuntu.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "zorin",
+    "family": "debian",
+    "base": "ubuntu",
+    "releaseModel": "lts",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 3000,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 1,
+    "tinkering": 2,
+    "beginner": 5,
+    "use": {
+      "officeWeb": 5,
+      "dev": 3,
+      "creative": 3,
+      "gaming": 3
+    },
+    "editions": [
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://zorin.com/os/download/",
+        "familiarity": {
+          "win11": 3,
+          "win7": 3,
+          "macos": 2,
+          "chromeos": 1
+        }
+      }
+    ],
+    "homepage": "https://zorin.com/os/",
+    "docsUrl": "https://help.zorin.com/",
+    "logo": "logos/zorin.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "popos",
+    "family": "debian",
+    "base": "ubuntu",
+    "releaseModel": "lts",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "builtin",
+    "firmware": "included",
+    "terminalRequired": 2,
+    "tinkering": 3,
+    "beginner": 4,
+    "use": {
+      "officeWeb": 4,
+      "dev": 5,
+      "creative": 4,
+      "gaming": 4
+    },
+    "editions": [
+      {
+        "de": "cosmic",
+        "official": true,
+        "downloadUrl": "https://system76.com/pop/download/"
+      }
+    ],
+    "homepage": "https://system76.com/pop/",
+    "docsUrl": "https://support.system76.com/",
+    "logo": "logos/popos.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "debian",
+    "family": "debian",
+    "base": null,
+    "releaseModel": "point",
+    "archs": [
+      "x86_64",
+      "aarch64"
+    ],
+    "deviceClasses": [
+      "desktop",
+      "server"
+    ],
+    "ramMinMb": 2000,
+    "nvidia": "manual",
+    "firmware": "included",
+    "terminalRequired": 3,
+    "tinkering": 4,
+    "beginner": 3,
+    "use": {
+      "officeWeb": 4,
+      "dev": 5,
+      "creative": 3,
+      "gaming": 2
+    },
+    "editions": [
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://www.debian.org/distrib/"
+      },
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://www.debian.org/distrib/"
+      },
+      {
+        "de": "xfce",
+        "official": true,
+        "downloadUrl": "https://www.debian.org/distrib/",
+        "ramMinMb": 1200
+      },
+      {
+        "de": "none",
+        "official": true,
+        "downloadUrl": "https://www.debian.org/distrib/",
+        "ramMinMb": 600
+      }
+    ],
+    "homepage": "https://www.debian.org",
+    "docsUrl": "https://www.debian.org/doc/",
+    "logo": "logos/debian.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "fedora",
+    "family": "redhat",
+    "base": null,
+    "releaseModel": "point-fast",
+    "archs": [
+      "x86_64",
+      "aarch64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "third-party-repo",
+    "firmware": "restricted",
+    "terminalRequired": 3,
+    "tinkering": 3,
+    "beginner": 3,
+    "use": {
+      "officeWeb": 4,
+      "dev": 5,
+      "creative": 4,
+      "gaming": 3
+    },
+    "editions": [
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://fedoraproject.org/workstation/download"
+      },
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://fedoraproject.org/kde/download"
+      }
+    ],
+    "homepage": "https://fedoraproject.org",
+    "docsUrl": "https://docs.fedoraproject.org/",
+    "logo": "logos/fedora.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "opensuse-leap",
+    "family": "suse",
+    "base": null,
+    "releaseModel": "point",
+    "archs": [
+      "x86_64",
+      "aarch64"
+    ],
+    "deviceClasses": [
+      "desktop",
+      "server"
+    ],
+    "ramMinMb": 3000,
+    "nvidia": "third-party-repo",
+    "firmware": "restricted",
+    "terminalRequired": 3,
+    "tinkering": 4,
+    "beginner": 3,
+    "use": {
+      "officeWeb": 4,
+      "dev": 4,
+      "creative": 3,
+      "gaming": 2
+    },
+    "editions": [
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://get.opensuse.org/leap/"
+      },
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://get.opensuse.org/leap/"
+      },
+      {
+        "de": "none",
+        "official": true,
+        "downloadUrl": "https://get.opensuse.org/leap/",
+        "ramMinMb": 1000
+      }
+    ],
+    "homepage": "https://www.opensuse.org",
+    "docsUrl": "https://doc.opensuse.org/",
+    "logo": "logos/opensuse-leap.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "opensuse-tumbleweed",
+    "family": "suse",
+    "base": null,
+    "releaseModel": "rolling",
+    "archs": [
+      "x86_64",
+      "aarch64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 3000,
+    "nvidia": "third-party-repo",
+    "firmware": "restricted",
+    "terminalRequired": 3,
+    "tinkering": 4,
+    "beginner": 4,
+    "use": {
+      "officeWeb": 4,
+      "dev": 5,
+      "creative": 4,
+      "gaming": 3
+    },
+    "editions": [
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://get.opensuse.org/tumbleweed/"
+      },
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://get.opensuse.org/tumbleweed/"
+      }
+    ],
+    "homepage": "https://www.opensuse.org",
+    "docsUrl": "https://doc.opensuse.org/",
+    "logo": "logos/opensuse-tumbleweed.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "mx",
+    "family": "debian",
+    "base": "debian",
+    "releaseModel": "point",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 1500,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 2,
+    "tinkering": 3,
+    "beginner": 4,
+    "use": {
+      "officeWeb": 5,
+      "dev": 3,
+      "creative": 2,
+      "gaming": 2
+    },
+    "editions": [
+      {
+        "de": "xfce",
+        "official": true,
+        "downloadUrl": "https://mxlinux.org/download-links/",
+        "ramMinMb": 1000
+      },
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://mxlinux.org/download-links/",
+        "ramMinMb": 1800
+      }
+    ],
+    "homepage": "https://mxlinux.org",
+    "docsUrl": "https://mxlinux.org/manuals/",
+    "logo": "logos/mx.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "manjaro",
+    "family": "arch",
+    "base": "arch",
+    "releaseModel": "rolling",
+    "archs": [
+      "x86_64",
+      "aarch64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 3000,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 3,
+    "tinkering": 4,
+    "beginner": 3,
+    "use": {
+      "officeWeb": 4,
+      "dev": 3,
+      "creative": 4,
+      "gaming": 4
+    },
+    "editions": [
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://manjaro.org/products/download/x86"
+      },
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://manjaro.org/products/download/x86"
+      },
+      {
+        "de": "xfce",
+        "official": true,
+        "downloadUrl": "https://manjaro.org/products/download/x86",
+        "ramMinMb": 2000
+      }
+    ],
+    "homepage": "https://manjaro.org",
+    "docsUrl": "https://wiki.manjaro.org/",
+    "logo": "logos/manjaro.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "endeavouros",
+    "family": "arch",
+    "base": "arch",
+    "releaseModel": "rolling",
+    "archs": [
+      "x86_64",
+      "aarch64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 3000,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 4,
+    "tinkering": 5,
+    "beginner": 2,
+    "use": {
+      "officeWeb": 3,
+      "dev": 4,
+      "creative": 4,
+      "gaming": 4
+    },
+    "editions": [
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://endeavouros.com/download/"
+      },
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://endeavouros.com/download/"
+      },
+      {
+        "de": "xfce",
+        "official": true,
+        "downloadUrl": "https://endeavouros.com/download/",
+        "ramMinMb": 2000
+      }
+    ],
+    "homepage": "https://endeavouros.com",
+    "docsUrl": "https://discovery.endeavouros.com/",
+    "logo": "logos/endeavouros.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "cachyos",
+    "family": "arch",
+    "base": "arch",
+    "releaseModel": "rolling",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop",
+      "console"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 3,
+    "tinkering": 4,
+    "beginner": 3,
+    "use": {
+      "officeWeb": 3,
+      "dev": 5,
+      "creative": 4,
+      "gaming": 5
+    },
+    "editions": [
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://cachyos.org/download/"
+      },
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://cachyos.org/download/"
+      }
+    ],
+    "homepage": "https://cachyos.org",
+    "docsUrl": "https://wiki.cachyos.org/",
+    "logo": "logos/cachyos.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "bazzite",
+    "family": "redhat",
+    "base": "fedora",
+    "releaseModel": "atomic",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop",
+      "console"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "builtin",
+    "firmware": "included",
+    "terminalRequired": 1,
+    "tinkering": 2,
+    "beginner": 4,
+    "use": {
+      "officeWeb": 3,
+      "dev": 3,
+      "creative": 3,
+      "gaming": 5
+    },
+    "editions": [
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://bazzite.gg/"
+      },
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://bazzite.gg/"
+      }
+    ],
+    "homepage": "https://bazzite.gg",
+    "docsUrl": "https://docs.bazzite.gg/",
+    "logo": "logos/bazzite.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "nobara",
+    "family": "redhat",
+    "base": "fedora",
+    "releaseModel": "point-fast",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "builtin",
+    "firmware": "included",
+    "terminalRequired": 2,
+    "tinkering": 3,
+    "beginner": 4,
+    "use": {
+      "officeWeb": 3,
+      "dev": 4,
+      "creative": 4,
+      "gaming": 5
+    },
+    "editions": [
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://nobaraproject.org/download-nobara/"
+      },
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://nobaraproject.org/download-nobara/"
+      }
+    ],
+    "homepage": "https://nobaraproject.org",
+    "docsUrl": "https://wiki.nobaraproject.org/",
+    "logo": "logos/nobara.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "ubuntu-studio",
+    "family": "debian",
+    "base": "ubuntu",
+    "releaseModel": "lts",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 2,
+    "tinkering": 2,
+    "beginner": 4,
+    "use": {
+      "officeWeb": 3,
+      "dev": 3,
+      "creative": 5,
+      "gaming": 2
+    },
+    "editions": [
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://ubuntustudio.org/download/"
+      }
+    ],
+    "homepage": "https://ubuntustudio.org",
+    "docsUrl": "https://ubuntustudio.org/documentation/",
+    "logo": "logos/ubuntu-studio.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "omarchy",
+    "family": "arch",
+    "base": "arch",
+    "releaseModel": "rolling",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "manual",
+    "firmware": "included",
+    "terminalRequired": 5,
+    "tinkering": 5,
+    "beginner": 1,
+    "use": {
+      "officeWeb": 2,
+      "dev": 5,
+      "creative": 3,
+      "gaming": 3
+    },
+    "editions": [
+      {
+        "de": "hyprland",
+        "official": true,
+        "downloadUrl": "https://omarchy.org/"
+      }
+    ],
+    "homepage": "https://omarchy.org",
+    "docsUrl": "https://learn.omacom.io/",
+    "logo": "logos/omarchy.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "ubuntu-server",
+    "family": "debian",
+    "base": "ubuntu",
+    "releaseModel": "lts",
+    "archs": [
+      "x86_64",
+      "aarch64"
+    ],
+    "deviceClasses": [
+      "server"
+    ],
+    "ramMinMb": 1000,
+    "nvidia": "manual",
+    "firmware": "included",
+    "terminalRequired": 5,
+    "tinkering": 3,
+    "beginner": 5,
+    "use": {
+      "officeWeb": 3,
+      "dev": 5,
+      "creative": 1,
+      "gaming": 1
+    },
+    "editions": [
+      {
+        "de": "none",
+        "official": true,
+        "downloadUrl": "https://ubuntu.com/download/server"
+      }
+    ],
+    "homepage": "https://ubuntu.com/server",
+    "docsUrl": "https://ubuntu.com/server/docs",
+    "logo": "logos/ubuntu-server.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "fedora-asahi",
+    "family": "redhat",
+    "base": "fedora",
+    "releaseModel": "point-fast",
+    "archs": [
+      "apple-silicon"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "manual",
+    "firmware": "included",
+    "terminalRequired": 3,
+    "tinkering": 4,
+    "beginner": 3,
+    "use": {
+      "officeWeb": 4,
+      "dev": 5,
+      "creative": 3,
+      "gaming": 2
+    },
+    "editions": [
+      {
+        "de": "kde",
+        "official": true,
+        "downloadUrl": "https://asahilinux.org/fedora/"
+      },
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://asahilinux.org/fedora/"
+      }
+    ],
+    "homepage": "https://asahilinux.org",
+    "docsUrl": "https://asahilinux.org/docs/",
+    "logo": "logos/fedora-asahi.svg",
+    "lastReviewed": "2026-09-06"
+  }
+]

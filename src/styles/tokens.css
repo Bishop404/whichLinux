@@ -1,0 +1,79 @@
+/*
+ * Tokyo Night Storm (dark) and Tokyo Night Day (light).
+ *
+ * Contrast note: the palette's own `comment` colour (#565f89) sits at 2.36:1 on
+ * the Storm background. That is the natural pick for the dimmed answer history
+ * and it fails WCAG AA badly, so muted text uses #a9b1d6 (6.9:1) instead.
+ * Nothing that carries meaning is allowed below 4.5:1.
+ */
+:root {
+  --bg:          #e1e2e7;
+  --surface:     #f2f2f5;
+  --surface-2:   #e9e9ed;
+  --border:      #c4c8da;
+  --border-soft: #d5d8e5;
+
+  --fg:          #343b58;
+  --fg-muted:    #4f5578;  /* 5.6:1 on --bg */
+
+  --accent:      #2e7de9;
+  --accent-soft: #d3e2fb;
+  --good:        #587539;
+  --warn:        #b15c00;
+  --magenta:     #9854f1;
+
+  --shadow: 0 1px 2px rgb(52 59 88 / 0.08), 0 8px 24px rgb(52 59 88 / 0.08);
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  --measure: 62ch;
+
+  --mono: ui-monospace, "JetBrains Mono", "Fira Code", SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:          #1f2335;
+    --surface:     #24283b;
+    --surface-2:   #292e42;
+    --border:      #3b4261;
+    --border-soft: #2f3549;
+
+    --fg:          #c0caf5;
+    --fg-muted:    #a9b1d6;  /* 6.9:1 on --surface */
+
+    --accent:      #7aa2f7;
+    --accent-soft: #2c3555;
+    --good:        #9ece6a;
+    --warn:        #e0af68;
+    --magenta:     #bb9af7;
+
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 28px rgb(0 0 0 / 0.28);
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:          #1f2335;
+  --surface:     #24283b;
+  --surface-2:   #292e42;
+  --border:      #3b4261;
+  --border-soft: #2f3549;
+
+  --fg:          #c0caf5;
+  --fg-muted:    #a9b1d6;
+
+  --accent:      #7aa2f7;
+  --accent-soft: #2c3555;
+  --good:        #9ece6a;
+  --warn:        #e0af68;
+  --magenta:     #bb9af7;
+
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 28px rgb(0 0 0 / 0.28);
+
+  color-scheme: dark;
+}
