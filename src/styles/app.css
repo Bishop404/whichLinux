@@ -286,6 +286,11 @@ main {
   color: var(--fg-muted);
   margin-top: 1.5rem;
 }
+
+.prompt {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+}
 @media (hover: none) { .keyhint { display: none; } }
 
 /* --------------------------------------------------------------- results -- */

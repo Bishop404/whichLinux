@@ -15,6 +15,8 @@ npm test           # engine, i18n, URL state, and a full DOM walkthrough
 npm run build      # -> dist/
 npm run preview
 npm run logos      # regenerate the Simple Icons logo files
+npm run coverage   # sweep every answer set: who wins, and where the fit is weak
+npm run wins mint  # show exactly which answers lead to one distro
 ```
 
 Deploy by uploading the contents of `dist/` to any static host. `.htaccess`
@@ -52,6 +54,16 @@ locale. No answer lists to update.
 
 The test suite enforces that every distribution can actually win something —
 a record no answer can ever surface is a bug, and `npm test` will name it.
+`npm run coverage` goes further and reports how often each one wins across all
+76,860 reachable answer sets, plus which answers get a poor best-match. Run it
+after changing weights: a distro that drops to near-zero has usually been
+squeezed out by a neighbour rather than genuinely beaten. It prints
+`NEVER WINS` rather than a rounded `0.0%`, because a distro winning 36 times out
+of 76,860 and one winning never are very different problems.
+
+`npm run wins <id>` explains a single distro: it lists which answers are constant
+across every set that distro wins, which is how you check that a deliberately
+gated option is gated on what you intended.
 
 ## Adding a language
 

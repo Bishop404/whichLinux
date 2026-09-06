@@ -118,6 +118,42 @@
     "lastReviewed": "2026-09-06"
   },
   {
+    "id": "lubuntu",
+    "family": "debian",
+    "base": "ubuntu",
+    "releaseModel": "lts",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "desktop"
+    ],
+    "ramMinMb": 1000,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 2,
+    "tinkering": 3,
+    "beginner": 4,
+    "use": {
+      "officeWeb": 5,
+      "dev": 3,
+      "creative": 2,
+      "gaming": 2
+    },
+    "editions": [
+      {
+        "de": "lxqt",
+        "official": true,
+        "downloadUrl": "https://lubuntu.me/downloads/",
+        "ramMinMb": 900
+      }
+    ],
+    "homepage": "https://lubuntu.me",
+    "docsUrl": "https://manual.lubuntu.me/",
+    "logo": "logos/lubuntu.svg",
+    "lastReviewed": "2026-09-06"
+  },
+  {
     "id": "zorin",
     "family": "debian",
     "base": "ubuntu",
@@ -179,7 +215,7 @@
       "officeWeb": 4,
       "dev": 5,
       "creative": 4,
-      "gaming": 4
+      "gaming": 5
     },
     "editions": [
       {
@@ -563,7 +599,6 @@
       "x86_64"
     ],
     "deviceClasses": [
-      "desktop",
       "console"
     ],
     "ramMinMb": 4000,

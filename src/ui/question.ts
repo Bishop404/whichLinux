@@ -6,6 +6,8 @@ export interface QuestionView {
   node: HTMLElement;
   /** Selects the nth option (1-based), for number-key shortcuts. */
   choose(index: number): void;
+  /** Submits a multi-select answer. No-op elsewhere, or with nothing chosen. */
+  confirm(): void;
 }
 
 export function renderQuestion(
@@ -61,9 +63,10 @@ export function renderQuestion(
     options.append(button);
   });
 
-  confirm.addEventListener("click", () => {
-    if (selected.size > 0) onAnswer([...selected]);
-  });
+  const submit = () => {
+    if (multi && selected.size > 0) onAnswer([...selected]);
+  };
+  confirm.addEventListener("click", submit);
 
   const progress = el("div", { class: "step" }, [
     el("span", {
@@ -81,14 +84,22 @@ export function renderQuestion(
     options,
     multi ? el("div", { class: "actions" }, [
       confirm,
-      el("span", {
-        class: "keyhint",
-        style: "margin:0",
-        text: selected.size === 0 ? t("nav.pickOne") : "",
-      }),
+      // Its own class, not .keyhint: the keyboard hint is hidden on touch
+      // devices, and this message is exactly what a phone user needs when the
+      // Continue button is disabled.
+      el("span", { class: "prompt", text: selected.size === 0 ? t("nav.pickOne") : "" }),
     ]) : undefined,
-    el("p", { class: "keyhint", text: t("nav.hintKeys") }),
+    el("p", { class: "keyhint", text: t(multi ? "nav.hintKeysMulti" : "nav.hintKeys") }),
   ]);
+
+  // Enter anywhere inside a multi-select question means "done choosing". Without
+  // preventDefault, Enter on a focused option would re-toggle that option
+  // instead, which is the opposite of what the user intends.
+  node.addEventListener("keydown", (event) => {
+    if (!multi || event.key !== "Enter" || event.altKey || event.ctrlKey || event.metaKey) return;
+    event.preventDefault();
+    submit();
+  });
 
   sync();
 
@@ -97,5 +108,6 @@ export function renderQuestion(
     choose(index) {
       buttons[index - 1]?.click();
     },
+    confirm: submit,
   };
 }

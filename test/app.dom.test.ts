@@ -135,6 +135,61 @@ describe("the app, end to end", () => {
     expect(document.querySelector(".pick__edition")?.textContent).toContain("Server");
   });
 
+  /** Answers everything up to the multi-select "what will you do" question. */
+  async function toMultiSelect(): Promise<void> {
+    await boot();
+    await pick("laptop or desktop");
+    await pick("regular PC");
+    await pick("8 GB or more");
+    await pick("rather never see it");
+    await pick("don't break it");
+    await pick("Windows 7");
+    await pick("out of the box");
+    expect(heading()).toContain("What will you mostly do");
+  }
+
+  it("confirms a multi-select with Enter when nothing is focused", async () => {
+    await toMultiSelect();
+    await pick("Web and documents");
+
+    dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    await settle();
+
+    expect(heading()).toContain("graphics card");
+  });
+
+  it("confirms with Enter while an option button has focus, without re-toggling it", async () => {
+    await toMultiSelect();
+    const gaming = options().find((b) => b.textContent?.includes("Gaming"))!;
+    gaming.click();
+    gaming.focus();
+    await settle();
+    expect(gaming.getAttribute("aria-pressed")).toBe("true");
+
+    gaming.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    await settle();
+
+    // It advanced, and it kept the selection rather than un-picking it.
+    expect(heading()).toContain("graphics card");
+    expect(location.hash).toContain("use.gaming");
+  });
+
+  it("does not confirm an empty multi-select with Enter", async () => {
+    await toMultiSelect();
+    dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    await settle();
+
+    expect(heading()).toContain("What will you mostly do");
+  });
+
+  it("leaves Enter alone on a single-choice question", async () => {
+    await boot();
+    dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    await settle();
+
+    expect(heading()).toContain("What are you setting up");
+  });
+
   it("selects options with the number keys", async () => {
     await boot();
     dispatchEvent(new KeyboardEvent("keydown", { key: "1", bubbles: true }));

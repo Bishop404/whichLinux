@@ -11,7 +11,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "logos": "node scripts/generate-logos.mjs"
+    "logos": "node scripts/generate-logos.mjs",
+    "coverage": "vite-node scripts/coverage.ts",
+    "wins": "vite-node scripts/whowins.ts"
   },
   "devDependencies": {
     "@types/node": "^26.4.1",

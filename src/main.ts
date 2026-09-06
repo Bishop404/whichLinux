@@ -164,8 +164,20 @@ function renderMasthead(): void {
 
 function onKeydown(event: KeyboardEvent): void {
   const target = event.target as HTMLElement | null;
-  if (target && /^(INPUT|SELECT|TEXTAREA)$/.test(target.tagName)) return;
+  if (target && /^(INPUT|SELECT|TEXTAREA|A)$/.test(target.tagName)) return;
   if (event.metaKey || event.ctrlKey || event.altKey) return;
+
+  if (event.key === "Enter") {
+    // Choosing with the number keys leaves focus on the page rather than on a
+    // control, so Enter has to be caught here too. A focused control (a masthead
+    // button, a download link) keeps its own Enter behaviour.
+    const active = document.activeElement;
+    if (current && (!active || active === document.body || active === root)) {
+      event.preventDefault();
+      current.confirm();
+    }
+    return;
+  }
 
   if (event.key === "Backspace") {
     event.preventDefault();

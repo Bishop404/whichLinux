@@ -42,7 +42,7 @@ describe("persona goldens", () => {
       stability: "stable", familiarity: "win7", customize: "no",
       use: "officeWeb", gpu: "intel",
     }));
-    expect(["mx", "xubuntu", "mint"]).toContain(best.distro.id);
+    expect(["mx", "lubuntu", "mint"]).toContain(best.distro.id);
     expect(["xfce", "lxqt", "mate"]).toContain(best.edition.de);
   });
 
@@ -52,13 +52,36 @@ describe("persona goldens", () => {
     expect(result.relaxed).toEqual([]);
   });
 
-  it("gamer who wants it to just work gets Bazzite", () => {
+  it("handheld gamer who wants it to just work gets Bazzite", () => {
     const best = top(a({
-      device: "desktop", arch: "x86", ram: "8plus", terminal: "never",
+      device: "console", arch: "x86", ram: "8plus", terminal: "never",
+      stability: "stable", familiarity: "none", customize: "no",
+      use: "gaming", gpu: "amd",
+    }));
+    expect(best.distro.id).toBe("bazzite");
+  });
+
+  it("never offers Bazzite to someone setting up a desktop", () => {
+    // Bazzite is a console-style image; on a desktop it is the wrong shape of
+    // answer even though it technically installs there.
+    for (const stability of ["stable", "balanced", "fresh"]) {
+      for (const terminal of ["never", "paste", "tinker"]) {
+        const ids = recommend(a({
+          device: "desktop", arch: "x86", ram: "8plus", terminal,
+          stability, familiarity: "win11", customize: "no", use: "gaming", gpu: "nvidia",
+        }), data, 20).candidates.map((c) => c.distro.id);
+        expect(ids, `${stability}/${terminal}`).not.toContain("bazzite");
+      }
+    }
+  });
+
+  it("offers a stable desktop gaming answer that is actually about gaming", () => {
+    const ids = topIds(a({
+      device: "desktop", arch: "x86", ram: "8plus", terminal: "paste",
       stability: "stable", familiarity: "win11", customize: "no",
       use: "gaming", gpu: "nvidia",
     }));
-    expect(best.distro.id).toBe("bazzite");
+    expect(["nobara", "popos"]).toContain(ids[0]);
   });
 
   it("gamer who wants the latest and can use a terminal gets CachyOS", () => {
@@ -70,13 +93,16 @@ describe("persona goldens", () => {
     expect(best.distro.id).toBe("cachyos");
   });
 
-  it("the stability answer alone separates the two gaming picks", () => {
-    const base = {
-      device: "desktop", arch: "x86", ram: "8plus", terminal: "paste",
-      familiarity: "win11", customize: "no", use: "gaming", gpu: "amd",
-    };
-    expect(top(a({ ...base, stability: "stable" })).distro.id).toBe("bazzite");
-    expect(top(a({ ...base, stability: "fresh" })).distro.id).not.toBe("bazzite");
+  it("separates the two handheld picks by appetite for maintenance", () => {
+    // Both are gaming-first, so stability alone does not tell them apart:
+    // Bazzite's whole point is that it is hands-off, which keeps winning for a
+    // user who wants out-of-the-box. CachyOS is for someone who wants to tune it.
+    const base = { device: "console", arch: "x86", ram: "8plus", familiarity: "none", use: "gaming", gpu: "amd" };
+
+    expect(top(a({ ...base, terminal: "never", stability: "stable", customize: "no" })).distro.id)
+      .toBe("bazzite");
+    expect(top(a({ ...base, terminal: "tinker", stability: "fresh", customize: "yes" })).distro.id)
+      .toBe("cachyos");
   });
 
   it("content creator gets Ubuntu Studio", () => {

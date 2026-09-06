@@ -18,6 +18,7 @@ const MARKS = {
   // Ubuntu Server is Ubuntu; Leap and Tumbleweed are both openSUSE.
   "ubuntu-server": "Ubuntu",
   kubuntu: "Kubuntu",
+  lubuntu: "Lubuntu",
   zorin: "Zorin",
   popos: "Pop!_OS",
   debian: "Debian",
