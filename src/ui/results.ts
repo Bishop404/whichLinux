@@ -1,4 +1,5 @@
 import type { Candidate, Recommendation } from "../engine";
+import { LOGO_MARKUP } from "../data/logos";
 import { locale, reasonText, t } from "../i18n";
 import { el } from "./dom";
 
@@ -11,20 +12,33 @@ function editionLabel(candidate: Candidate): string {
 }
 
 /**
- * Single-colour marks are drawn as a CSS mask tinted with the brand colour, so
- * the SVG we ship stays byte-identical to the file the project published. Marks
- * that are already full-colour (Bazzite, Ubuntu Studio) are shown as supplied.
+ * Marks are inlined into the page rather than loaded as images.
+ *
+ * The markup is a verbatim copy of the shipped file, so the licensing position
+ * is unchanged: a single-colour mark is tinted by setting `fill` on the copy in
+ * the DOM, never on the file. Bazzite and Ubuntu Studio carry their own colours
+ * and are left exactly as supplied.
  */
 function logo(candidate: Candidate, className: string): HTMLElement {
-  const { logo: src, logoColor } = candidate.distro;
+  const chip = el("span", { class: `chip ${className}`.trim(), "aria-hidden": "true" });
 
-  // The tint has to live on its own element: the chip behind it is a light
-  // background, and a mask paints the element's own background-color.
-  const mark = logoColor
-    ? el("span", { class: "logo--mono", style: `--brand:${logoColor};--mark:url("${src}")` })
-    : el("img", { src, alt: "", width: 64, height: 64 });
+  const markup = LOGO_MARKUP[candidate.distro.id];
+  if (!markup) return chip;
 
-  return el("span", { class: `chip ${className}`.trim(), "aria-hidden": "true" }, [mark]);
+  const parsed = new DOMParser().parseFromString(markup, "image/svg+xml");
+  const root = parsed.documentElement;
+  // A parse failure yields a <parsererror> document rather than throwing.
+  if (root.nodeName.toLowerCase() !== "svg") return chip;
+
+  const svg = document.importNode(root, true) as unknown as SVGElement;
+  // Sized by CSS; the viewBox carries the aspect ratio.
+  svg.removeAttribute("width");
+  svg.removeAttribute("height");
+  // `fill` is inherited, and the single-colour marks set none of their own.
+  if (candidate.distro.logoColor) svg.setAttribute("fill", candidate.distro.logoColor);
+
+  chip.append(svg);
+  return chip;
 }
 
 function reasonList(candidate: Candidate): (HTMLElement | undefined)[] {

@@ -69,3 +69,21 @@ describe("logo licensing", () => {
     }
   });
 });
+
+describe("inlined logo markup", () => {
+  it("matches the shipped files exactly", async () => {
+    const { LOGO_MARKUP } = await import("../src/data/logos");
+    for (const distro of distros) {
+      const onDisk = readFileSync(`public/${distro.logo}`, "utf8").trim();
+      expect(LOGO_MARKUP[distro.id], `${distro.id} markup is stale — run npm run logos`)
+        .toBe(onDisk);
+    }
+  });
+
+  it("covers every distro, so no chip renders empty", async () => {
+    const { LOGO_MARKUP } = await import("../src/data/logos");
+    for (const distro of distros) {
+      expect(LOGO_MARKUP[distro.id], `${distro.id} has no inlined mark`).toBeTruthy();
+    }
+  });
+});

@@ -379,14 +379,6 @@ main {
   max-width: var(--measure);
 }
 
-/* Tinted mask, so the shipped SVG is never altered. */
-.logo--mono {
-  display: block;
-  background-color: var(--brand);
-  -webkit-mask: var(--mark) center / contain no-repeat;
-  mask: var(--mark) center / contain no-repeat;
-}
-
 .reasons { margin: 1.6rem 0 0; }
 .reasons h3 {
   margin: 0 0 0.6rem;

@@ -68,13 +68,17 @@ export function renderQuestion(
   };
   confirm.addEventListener("click", submit);
 
+  // Width is set through the CSSOM rather than a style="" attribute: a strict
+  // Content-Security-Policy on the host drops inline style attributes, which
+  // would silently leave the progress bar empty.
+  const fill = el("i");
+  fill.style.width = `${Math.round((position.current - 1) / position.total * 100)}%`;
+
   const progress = el("div", { class: "step" }, [
     el("span", {
       text: t("progress.label", { current: position.current, total: position.total }),
     }),
-    el("span", { class: "step__bar", "aria-hidden": "true" }, [
-      el("i", { style: `width:${Math.round((position.current - 1) / position.total * 100)}%` }),
-    ]),
+    el("span", { class: "step__bar", "aria-hidden": "true" }, [fill]),
   ]);
 
   const node = el("section", { class: "view", "aria-labelledby": "q-title" }, [
