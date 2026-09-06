@@ -84,6 +84,12 @@ export interface Distro {
   homepage: string;
   docsUrl: string;
   logo: string;
+  /**
+   * Brand colour for a single-colour mark, applied at render time so the file on
+   * disk stays a verbatim copy of what the project published. Absent means the
+   * logo is already full-colour and must be shown exactly as supplied.
+   */
+  logoColor?: string;
   /** ISO date. Distro facts go stale; make that visible rather than silent. */
   lastReviewed: string;
 }

@@ -326,14 +326,26 @@ main {
   flex-wrap: wrap;
 }
 
-.pick__logo {
+.chip {
   flex: none;
+  display: grid;
+  place-items: center;
+  background: var(--logo-chip);
+}
+.chip > * { width: 100%; height: 100%; object-fit: contain; }
+
+.chip--lg {
   width: 4.2rem;
   height: 4.2rem;
   border-radius: var(--radius-sm);
-  background: var(--logo-chip);
   padding: 0.55rem;
-  object-fit: contain;
+}
+
+.chip--sm {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 7px;
+  padding: 0.3rem;
 }
 
 .pick__name { margin: 0; font-size: 1.6rem; letter-spacing: -0.02em; }
@@ -365,6 +377,14 @@ main {
   font-size: 1.05rem;
   color: var(--fg-muted);
   max-width: var(--measure);
+}
+
+/* Tinted mask, so the shipped SVG is never altered. */
+.logo--mono {
+  display: block;
+  background-color: var(--brand);
+  -webkit-mask: var(--mark) center / contain no-repeat;
+  mask: var(--mark) center / contain no-repeat;
 }
 
 .reasons { margin: 1.6rem 0 0; }
@@ -406,15 +426,7 @@ main {
   border: 1px solid var(--border);
   border-radius: var(--radius);
 }
-.alt img {
-  flex: none;
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 7px;
-  background: var(--logo-chip);
-  padding: 0.3rem;
-  object-fit: contain;
-}
+
 .alt h3 { margin: 0; font-size: 1rem; }
 .alt p { margin: 0.2rem 0 0; font-size: 0.86rem; color: var(--fg-muted); }
 .alt__why { margin-top: 0.5rem !important; color: var(--fg) !important; font-size: 0.82rem !important; }

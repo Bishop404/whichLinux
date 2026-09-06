@@ -10,15 +10,21 @@ function editionLabel(candidate: Candidate): string {
   return t("result.edition", { desktop: t(`de.${candidate.edition.de}`) });
 }
 
+/**
+ * Single-colour marks are drawn as a CSS mask tinted with the brand colour, so
+ * the SVG we ship stays byte-identical to the file the project published. Marks
+ * that are already full-colour (Bazzite, Ubuntu Studio) are shown as supplied.
+ */
 function logo(candidate: Candidate, className: string): HTMLElement {
-  return el("img", {
-    class: className,
-    src: candidate.distro.logo,
-    alt: "",
-    "aria-hidden": "true",
-    width: 64,
-    height: 64,
-  });
+  const { logo: src, logoColor } = candidate.distro;
+
+  // The tint has to live on its own element: the chip behind it is a light
+  // background, and a mask paints the element's own background-color.
+  const mark = logoColor
+    ? el("span", { class: "logo--mono", style: `--brand:${logoColor};--mark:url("${src}")` })
+    : el("img", { src, alt: "", width: 64, height: 64 });
+
+  return el("span", { class: `chip ${className}`.trim(), "aria-hidden": "true" }, [mark]);
 }
 
 function reasonList(candidate: Candidate): (HTMLElement | undefined)[] {
@@ -46,7 +52,7 @@ function primaryCard(candidate: Candidate): HTMLElement {
 
   return el("article", { class: "pick" }, [
     el("div", { class: "pick__head" }, [
-      logo(candidate, "pick__logo"),
+      logo(candidate, "chip--lg"),
       el("div", {}, [
         el("h2", { class: "pick__name", text: name }),
         el("span", { class: "pick__edition", text: editionLabel(candidate) }),
@@ -88,7 +94,7 @@ function alternativeCard(candidate: Candidate, winnerReasons: Set<string>): HTML
   const distinguishing = positives.find((r) => !winnerReasons.has(r.key)) ?? positives[0];
 
   return el("article", { class: "alt" }, [
-    logo(candidate, ""),
+    logo(candidate, "chip--sm"),
     el("div", {}, [
       el("h3", { text: t(`distro.${candidate.distro.id}.name`) }),
       el("p", { text: editionLabel(candidate) }),
