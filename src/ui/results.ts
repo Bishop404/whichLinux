@@ -1,5 +1,4 @@
 import type { Candidate, Recommendation } from "../engine";
-import { LOGO_MARKUP } from "../data/logos";
 import { locale, reasonText, t } from "../i18n";
 import { el } from "./dom";
 
@@ -12,31 +11,35 @@ function editionLabel(candidate: Candidate): string {
 }
 
 /**
- * Marks are inlined into the page rather than loaded as images.
- *
- * The markup is a verbatim copy of the shipped file, so the licensing position
- * is unchanged: a single-colour mark is tinted by setting `fill` on the copy in
- * the DOM, never on the file. Bazzite and Ubuntu Studio carry their own colours
- * and are left exactly as supplied.
+ * Only approved source assets are displayed. They are loaded as ordinary images
+ * so application code cannot recolour, rewrite, or otherwise alter the mark.
+ * A missing asset intentionally falls back to the product name as text.
  */
-function logo(candidate: Candidate, className: string): HTMLElement {
+function logo(candidate: Candidate, className: string): HTMLElement | undefined {
   const chip = el("span", { class: `chip ${className}`.trim(), "aria-hidden": "true" });
+  if (candidate.distro.logo) {
+    chip.append(el("img", { src: `/${candidate.distro.logo}`, alt: "" }));
+    return chip;
+  }
 
-  const markup = LOGO_MARKUP[candidate.distro.id];
-  if (!markup) return chip;
-
-  const parsed = new DOMParser().parseFromString(markup, "image/svg+xml");
-  const root = parsed.documentElement;
-  // A parse failure yields a <parsererror> document rather than throwing.
-  if (root.nodeName.toLowerCase() !== "svg") return chip;
-
-  const svg = document.importNode(root, true) as unknown as SVGElement;
-  // Sized by CSS; the viewBox carries the aspect ratio.
-  svg.removeAttribute("width");
-  svg.removeAttribute("height");
-  // `fill` is inherited, and the single-colour marks set none of their own.
-  if (candidate.distro.logoColor) svg.setAttribute("fill", candidate.distro.logoColor);
-
+  if (!candidate.distro.logoColor) return undefined;
+  // This is deliberately a neutral monogram, never an approximation of a logo.
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 48 48");
+  const background = document.createElementNS(svg.namespaceURI, "rect");
+  background.setAttribute("width", "48");
+  background.setAttribute("height", "48");
+  background.setAttribute("fill", candidate.distro.logoColor);
+  const initial = document.createElementNS(svg.namespaceURI, "text");
+  initial.setAttribute("x", "24");
+  initial.setAttribute("y", "31");
+  initial.setAttribute("fill", "white");
+  initial.setAttribute("font-size", "25");
+  initial.setAttribute("font-family", "system-ui, sans-serif");
+  initial.setAttribute("font-weight", "700");
+  initial.setAttribute("text-anchor", "middle");
+  initial.textContent = t(`distro.${candidate.distro.id}.name`).trim().charAt(0).toUpperCase();
+  svg.append(background, initial);
   chip.append(svg);
   return chip;
 }

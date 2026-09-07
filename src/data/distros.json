@@ -43,7 +43,6 @@
     ],
     "homepage": "https://linuxmint.com",
     "docsUrl": "https://linuxmint.com/documentation.php",
-    "logo": "logos/mint.svg",
     "lastReviewed": "2026-09-06",
     "logoColor": "#86BE43"
   },
@@ -81,8 +80,7 @@
     "homepage": "https://ubuntu.com",
     "docsUrl": "https://help.ubuntu.com/",
     "logo": "logos/ubuntu.svg",
-    "lastReviewed": "2026-09-06",
-    "logoColor": "#E95420"
+    "lastReviewed": "2026-09-06"
   },
   {
     "id": "kubuntu",
@@ -116,7 +114,6 @@
     ],
     "homepage": "https://kubuntu.org",
     "docsUrl": "https://kubuntu.org/faq/",
-    "logo": "logos/kubuntu.svg",
     "lastReviewed": "2026-09-06",
     "logoColor": "#0079C1"
   },
@@ -153,7 +150,6 @@
     ],
     "homepage": "https://lubuntu.me",
     "docsUrl": "https://manual.lubuntu.me/",
-    "logo": "logos/lubuntu.svg",
     "lastReviewed": "2026-09-06",
     "logoColor": "#0068C8"
   },
@@ -194,7 +190,6 @@
     ],
     "homepage": "https://zorin.com/os/",
     "docsUrl": "https://help.zorin.com/",
-    "logo": "logos/zorin.svg",
     "lastReviewed": "2026-09-06",
     "logoColor": "#15A6F0"
   },
@@ -231,8 +226,7 @@
     "homepage": "https://system76.com/pop/",
     "docsUrl": "https://support.system76.com/",
     "logo": "logos/popos.svg",
-    "lastReviewed": "2026-09-06",
-    "logoColor": "#48B9C7"
+    "lastReviewed": "2026-09-06"
   },
   {
     "id": "debian",
@@ -286,8 +280,7 @@
     "homepage": "https://www.debian.org",
     "docsUrl": "https://www.debian.org/doc/",
     "logo": "logos/debian.svg",
-    "lastReviewed": "2026-09-06",
-    "logoColor": "#A81D33"
+    "lastReviewed": "2026-09-06"
   },
   {
     "id": "fedora",
@@ -327,7 +320,6 @@
     ],
     "homepage": "https://fedoraproject.org",
     "docsUrl": "https://docs.fedoraproject.org/",
-    "logo": "logos/fedora.svg",
     "lastReviewed": "2026-09-06",
     "logoColor": "#51A2DA"
   },
@@ -376,9 +368,8 @@
     ],
     "homepage": "https://www.opensuse.org",
     "docsUrl": "https://doc.opensuse.org/",
-    "logo": "logos/opensuse-leap.svg",
-    "lastReviewed": "2026-09-06",
-    "logoColor": "#73BA25"
+    "logo": "logos/opensuse.svg",
+    "lastReviewed": "2026-09-06"
   },
   {
     "id": "opensuse-tumbleweed",
@@ -418,9 +409,8 @@
     ],
     "homepage": "https://www.opensuse.org",
     "docsUrl": "https://doc.opensuse.org/",
-    "logo": "logos/opensuse-tumbleweed.svg",
-    "lastReviewed": "2026-09-06",
-    "logoColor": "#73BA25"
+    "logo": "logos/opensuse.svg",
+    "lastReviewed": "2026-09-06"
   },
   {
     "id": "mx",
@@ -461,7 +451,6 @@
     ],
     "homepage": "https://mxlinux.org",
     "docsUrl": "https://mxlinux.org/manuals/",
-    "logo": "logos/mx.svg",
     "lastReviewed": "2026-09-06",
     "logoColor": "#000000"
   },
@@ -509,7 +498,6 @@
     ],
     "homepage": "https://manjaro.org",
     "docsUrl": "https://wiki.manjaro.org/",
-    "logo": "logos/manjaro.svg",
     "lastReviewed": "2026-09-06",
     "logoColor": "#35BFA4"
   },
@@ -558,8 +546,7 @@
     "homepage": "https://endeavouros.com",
     "docsUrl": "https://discovery.endeavouros.com/",
     "logo": "logos/endeavouros.svg",
-    "lastReviewed": "2026-09-06",
-    "logoColor": "#7F7FFF"
+    "lastReviewed": "2026-09-06"
   },
   {
     "id": "cachyos",
@@ -600,8 +587,7 @@
     "homepage": "https://cachyos.org",
     "docsUrl": "https://wiki.cachyos.org/",
     "logo": "logos/cachyos.svg",
-    "lastReviewed": "2026-09-06",
-    "logoColor": "#00AA88"
+    "lastReviewed": "2026-09-06"
   },
   {
     "id": "bazzite",
@@ -680,7 +666,6 @@
     ],
     "homepage": "https://nobaraproject.org",
     "docsUrl": "https://wiki.nobaraproject.org/",
-    "logo": "logos/nobara.svg",
     "lastReviewed": "2026-09-06",
     "logoColor": "#000000"
   },
@@ -716,8 +701,8 @@
     ],
     "homepage": "https://ubuntustudio.org",
     "docsUrl": "https://ubuntustudio.org/documentation/",
-    "logo": "logos/ubuntu-studio.svg",
-    "lastReviewed": "2026-09-06"
+    "lastReviewed": "2026-09-06",
+    "logoColor": "#009BF9"
   },
   {
     "id": "omarchy",
@@ -751,9 +736,8 @@
     ],
     "homepage": "https://omarchy.org",
     "docsUrl": "https://learn.omacom.io/",
-    "logo": "logos/omarchy.svg",
-    "lastReviewed": "2026-09-06",
-    "logoColor": "#9ECE6A"
+    "logo": "logos/omarchy.png",
+    "lastReviewed": "2026-09-06"
   },
   {
     "id": "ubuntu-server",
@@ -789,8 +773,7 @@
     "homepage": "https://ubuntu.com/server",
     "docsUrl": "https://ubuntu.com/server/docs",
     "logo": "logos/ubuntu-server.svg",
-    "lastReviewed": "2026-09-06",
-    "logoColor": "#E95420"
+    "lastReviewed": "2026-09-06"
   },
   {
     "id": "fedora-asahi",
@@ -830,7 +813,6 @@
     "homepage": "https://asahilinux.org",
     "docsUrl": "https://asahilinux.org/docs/",
     "logo": "logos/fedora-asahi.svg",
-    "lastReviewed": "2026-09-06",
-    "logoColor": "#A61200"
+    "lastReviewed": "2026-09-06"
   }
 ]

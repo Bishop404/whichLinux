@@ -71,11 +71,14 @@ describe("i18n", () => {
     expect(mismatched).toEqual([]);
   });
 
-  it("every distro points at a logo that exists and a review date", () => {
+  it("every shipped logo exists and every distro has a review date", () => {
     for (const distro of distros) {
-      expect(distro.logo, distro.id).toMatch(/^logos\/.+\.svg$/);
-      // A missing file degrades to an empty chip in the browser, silently.
-      expect(existsSync(`public/${distro.logo}`), `missing public/${distro.logo}`).toBe(true);
+      if (distro.logo) {
+        // Vector is preferred; a raster mark is only used where the project
+        // publishes no square vector one (see public/logos/LOGOS.md).
+        expect(distro.logo, distro.id).toMatch(/^logos\/.+\.(svg|png)$/);
+        expect(existsSync(`public/${distro.logo}`), `missing public/${distro.logo}`).toBe(true);
+      }
       expect(distro.lastReviewed, distro.id).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
   });

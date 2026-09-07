@@ -30,19 +30,18 @@ projects and are included here under their own terms.
 
 Affected files:
 
-  public/logos/*.svg    the logo files themselves
-  src/data/logos.ts     generated; contains verbatim copies of those same files
+  public/logos/*        approved logo files themselves
 
 Those marks are aggregated with this software, not relicensed by it. Each keeps
-the licence it arrived with, including:
+the terms it arrived with; the current per-asset notices are in
+public/logos/LOGOS.md. No mark is included merely because some icon collection
+happens to contain it; the file must come from the project that owns the mark,
+under terms that project itself published.
 
-  Debian            CC BY-SA 3.0
-  MX Linux          GPL-3.0-only
-  Omarchy           MIT
-  Bazzite           Apache-2.0 (must not be modified — see its press kit)
-  Fedora            Red Hat brand guidelines; not an open licence
-  Ubuntu Studio     public domain (below the threshold of originality)
-  all others        CC0-1.0, via Simple Icons
+Several of those terms are ShareAlike (CC BY-SA 3.0 and 4.0) or copyleft
+(GPL-3.0). They apply to adaptations. Every file is shipped unmodified as part
+of a collection, which is aggregation rather than adaptation, so no ShareAlike
+or copyleft obligation extends to the code above.
 
 Separately from copyright, the distribution names and logos are trademarks of
 their respective owners. No licence granted here extends to any trademark. This
