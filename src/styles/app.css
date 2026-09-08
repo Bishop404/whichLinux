@@ -72,7 +72,7 @@ body::before {
 .brand::before {
   content: "~$";
   font: 0.9em/1 var(--mono);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .masthead__spacer { flex: 1; }
@@ -252,7 +252,7 @@ main {
 .option[aria-pressed="true"] .option__key {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--bg);
+  color: var(--on-accent);
 }
 
 .actions {
@@ -276,7 +276,7 @@ main {
 .btn--primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--bg);
+  color: var(--on-accent);
   font-weight: 600;
 }
 .btn--primary:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -354,7 +354,7 @@ main {
   display: inline-block;
   margin-top: 0.25rem;
   font: 0.78rem/1 var(--mono);
-  color: var(--accent);
+  color: var(--accent-text);
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 0.3rem 0.65rem;
@@ -422,7 +422,7 @@ main {
 .alt h3 { margin: 0; font-size: 1rem; }
 .alt p { margin: 0.2rem 0 0; font-size: 0.86rem; color: var(--fg-muted); }
 .alt__why { margin-top: 0.5rem !important; color: var(--fg) !important; font-size: 0.82rem !important; }
-.alt a { color: var(--accent); font-size: 0.82rem; }
+.alt a { color: var(--accent-text); font-size: 0.82rem; }
 
 .disclaimer {
   margin: 2.5rem 0 0;

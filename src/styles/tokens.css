@@ -1,30 +1,27 @@
 /*
- * Tokyo Night Storm (dark) and Tokyo Night Day (light).
- *
- * Contrast note: the palette's own `comment` colour (#565f89) sits at 2.36:1 on
- * the Storm background. That is the natural pick for the dimmed answer history
- * and it fails WCAG AA badly, so muted text uses #a9b1d6 (6.9:1) instead.
- * Nothing that carries meaning is allowed below 4.5:1.
+ * Tokyo Night Storm (dark) and Catppuccin Latte, lavender accent (light).
  */
 :root {
-  --bg:          #e1e2e7;
-  --surface:     #f2f2f5;
-  --surface-2:   #e9e9ed;
-  --border:      #c4c8da;
-  --border-soft: #d5d8e5;
+  --bg:          #dce0e8;  /* Crust  */
+  --surface:     #eff1f5;  /* Base   */
+  --surface-2:   #e6e9ef;  /* Mantle */
+  --border:      #bcc0cc;  /* Surface1 */
+  --border-soft: #ccd0da;  /* Surface0 */
 
-  --fg:          #343b58;
-  --fg-muted:    #4f5578;  /* 5.6:1 on --bg */
+  --fg:          #4c4f69;  /* Text     */
+  --fg-muted:    #5c5f77;  /* Subtext1, 4.7:1 on --bg */
 
-  --accent:      #2e7de9;
-  --accent-soft: #d3e2fb;
-  --good:        #587539;
-  --warn:        #b15c00;
-  --magenta:     #9854f1;
+  --accent:      #7287fd;  /* Lavender — surfaces only, 2.4:1 as text */
+  --accent-text: #4559c9;  /* Lavender darkened, 4.5:1 on --bg */
+  --on-accent:   #11111b;  /* 5.9:1 on Lavender */
+  --accent-soft: #d5dbfe;
+  --good:        #2d711e;  /* Green darkened,  4.5:1 on --bg */
+  --warn:        #ac4001;  /* Peach darkened,  4.6:1 on --bg */
+  --magenta:     #802cee;  /* Mauve darkened,  4.5:1 on --bg */
 
   --logo-chip: #f4f5f8;
 
-  --shadow: 0 1px 2px rgb(52 59 88 / 0.08), 0 8px 24px rgb(52 59 88 / 0.08);
+  --shadow: 0 1px 2px rgb(76 79 105 / 0.08), 0 8px 24px rgb(76 79 105 / 0.08);
 
   --radius: 14px;
   --radius-sm: 9px;
@@ -48,6 +45,8 @@
     --fg-muted:    #a9b1d6;  /* 6.9:1 on --surface */
 
     --accent:      #7aa2f7;
+    --accent-text: #7aa2f7;
+    --on-accent:   #1f2335;
     --accent-soft: #2c3555;
     --good:        #9ece6a;
     --warn:        #e0af68;
@@ -70,6 +69,8 @@
   --fg-muted:    #a9b1d6;
 
   --accent:      #7aa2f7;
+  --accent-text: #7aa2f7;
+  --on-accent:   #1f2335;
   --accent-soft: #2c3555;
   --good:        #9ece6a;
   --warn:        #e0af68;
