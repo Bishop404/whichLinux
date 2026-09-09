@@ -253,6 +253,10 @@
       "creative": 3,
       "gaming": 2
     },
+    "server": {
+      "files": 3,
+      "apps": 4
+    },
     "editions": [
       {
         "de": "gnome",
@@ -347,6 +351,10 @@
       "dev": 4,
       "creative": 3,
       "gaming": 2
+    },
+    "server": {
+      "files": 4,
+      "apps": 3
     },
     "editions": [
       {
@@ -630,6 +638,77 @@
     "lastReviewed": "2026-09-06"
   },
   {
+    "id": "batocera",
+    "family": "independent",
+    "base": null,
+    "releaseModel": "point-fast",
+    "archs": [
+      "x86_64",
+      "aarch64"
+    ],
+    "deviceClasses": [
+      "console"
+    ],
+    "ramMinMb": 1000,
+    "nvidia": "builtin",
+    "firmware": "included",
+    "terminalRequired": 1,
+    "tinkering": 3,
+    "beginner": 5,
+    "use": {
+      "officeWeb": 2,
+      "dev": 2,
+      "creative": 2,
+      "gaming": 4
+    },
+    "editions": [
+      {
+        "de": "emulationstation",
+        "official": true,
+        "downloadUrl": "https://batocera.org/download"
+      }
+    ],
+    "homepage": "https://batocera.org",
+    "docsUrl": "https://wiki.batocera.org/",
+    "lastReviewed": "2026-09-09",
+    "logoColor": "#AF3341"
+  },
+  {
+    "id": "chimeraos",
+    "family": "arch",
+    "base": "arch",
+    "releaseModel": "point-fast",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "console"
+    ],
+    "ramMinMb": 4000,
+    "nvidia": "builtin",
+    "firmware": "included",
+    "terminalRequired": 1,
+    "tinkering": 1,
+    "beginner": 4,
+    "use": {
+      "officeWeb": 2,
+      "dev": 2,
+      "creative": 2,
+      "gaming": 5
+    },
+    "editions": [
+      {
+        "de": "gnome",
+        "official": true,
+        "downloadUrl": "https://chimeraos.org/download"
+      }
+    ],
+    "homepage": "https://chimeraos.org",
+    "docsUrl": "https://github.com/ChimeraOS/chimeraos/wiki",
+    "logo": "logos/chimeraos.svg",
+    "lastReviewed": "2026-09-09"
+  },
+  {
     "id": "nobara",
     "family": "redhat",
     "base": "fedora",
@@ -763,6 +842,10 @@
       "creative": 1,
       "gaming": 1
     },
+    "server": {
+      "files": 3,
+      "apps": 5
+    },
     "editions": [
       {
         "de": "none",
@@ -774,6 +857,84 @@
     "docsUrl": "https://ubuntu.com/server/docs",
     "logo": "logos/ubuntu-server.svg",
     "lastReviewed": "2026-09-06"
+  },
+  {
+    "id": "truenas",
+    "family": "debian",
+    "base": "debian",
+    "releaseModel": "point",
+    "archs": [
+      "x86_64"
+    ],
+    "deviceClasses": [
+      "server"
+    ],
+    "ramMinMb": 8000,
+    "nvidia": "installer-optin",
+    "firmware": "included",
+    "terminalRequired": 2,
+    "tinkering": 3,
+    "beginner": 3,
+    "use": {
+      "officeWeb": 1,
+      "dev": 2,
+      "creative": 1,
+      "gaming": 1
+    },
+    "server": {
+      "files": 5,
+      "apps": 3
+    },
+    "editions": [
+      {
+        "de": "none",
+        "official": true,
+        "downloadUrl": "https://www.truenas.com/download-truenas-community-edition/"
+      }
+    ],
+    "homepage": "https://www.truenas.com",
+    "docsUrl": "https://www.truenas.com/docs/",
+    "lastReviewed": "2026-09-09",
+    "logoColor": "#18A9E0"
+  },
+  {
+    "id": "raspberry-pi-os",
+    "family": "debian",
+    "base": "debian",
+    "releaseModel": "point",
+    "archs": [
+      "aarch64"
+    ],
+    "deviceClasses": [
+      "server"
+    ],
+    "ramMinMb": 500,
+    "nvidia": "manual",
+    "firmware": "included",
+    "terminalRequired": 5,
+    "tinkering": 3,
+    "beginner": 5,
+    "use": {
+      "officeWeb": 2,
+      "dev": 4,
+      "creative": 1,
+      "gaming": 2
+    },
+    "server": {
+      "files": 4,
+      "apps": 5
+    },
+    "editions": [
+      {
+        "de": "none",
+        "official": true,
+        "downloadUrl": "https://www.raspberrypi.com/software/operating-systems/"
+      }
+    ],
+    "homepage": "https://www.raspberrypi.com/software/",
+    "docsUrl": "https://www.raspberrypi.com/documentation/computers/os.html",
+    "lastReviewed": "2026-09-09",
+    "logoColor": "#C51A4A"
   },
   {
     "id": "fedora-asahi",

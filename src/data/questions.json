@@ -409,6 +409,10 @@
   {
     "id": "use",
     "multi": true,
+    "showIf": {
+      "q": "device",
+      "isNot": "server"
+    },
     "options": [
       {
         "id": "officeWeb",
@@ -477,16 +481,66 @@
     ]
   },
   {
+    "id": "serverUse",
+    "multi": true,
+    "showIf": {
+      "q": "device",
+      "is": "server"
+    },
+    "options": [
+      {
+        "id": "files",
+        "weights": [
+          {
+            "attr": "server.files",
+            "values": {
+              "1": -6,
+              "2": -3,
+              "3": 0,
+              "4": 3,
+              "5": 6
+            },
+            "reason": "reason.good-files"
+          }
+        ]
+      },
+      {
+        "id": "apps",
+        "weights": [
+          {
+            "attr": "server.apps",
+            "values": {
+              "1": -6,
+              "2": -3,
+              "3": 0,
+              "4": 3,
+              "5": 6
+            },
+            "reason": "reason.good-selfhost"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "gpu",
     "showIf": {
-      "any": [
+      "all": [
         {
-          "q": "arch",
-          "is": "x86"
+          "any": [
+            {
+              "q": "arch",
+              "is": "x86"
+            },
+            {
+              "q": "arch",
+              "is": "unsure"
+            }
+          ]
         },
         {
-          "q": "arch",
-          "is": "unsure"
+          "q": "device",
+          "isNot": "server"
         }
       ]
     },

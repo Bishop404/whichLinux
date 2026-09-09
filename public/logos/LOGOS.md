@@ -27,6 +27,7 @@ was taken from.
 | `popos` | `distributor-logo-pop-os.svg` | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), © System76 — [pop-os/icon-theme@`75a976e5`](https://github.com/pop-os/icon-theme/blob/master/Pop/128x128/places/distributor-logo-pop-os.svg) |
 | `opensuse-leap`, `opensuse-tumbleweed` | `logos/buttons/button-colour.svg` | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), © openSUSE project — [openSUSE/artwork@`4d961f17`](https://github.com/openSUSE/artwork/blob/master/logos/buttons/button-colour.svg) |
 | `fedora-asahi` | `fedora-logo-icon.svg` (Asahi Linux mark) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), © Asahi Linux — [AsahiLinux/asahi-fedora-remix-logos@`e68f9ef8`](https://github.com/AsahiLinux/asahi-fedora-remix-logos/blob/main/icons/hicolor/scalable/apps/fedora-logo-icon.svg), the Fedora Asahi Remix branding package |
+| `chimeraos` | `assets/logo.svg` | MIT, © ChimeraOS — [ChimeraOS/chimeraos@`c09f029a`](https://github.com/ChimeraOS/chimeraos/blob/master/assets/logo.svg). The repository's `LICENSE` and its `LICENSE.spdx` both declare MIT for the whole package, artwork included. |
 | `omarchy` | `icon.png` | MIT, © David Heinemeier Hansson — [omacom/omarchy@`1e6ddf55`](https://github.com/omacom/omarchy/blob/quattro/icon.png). The only raster asset; Omarchy's vector mark is published only inside a dark rounded tile, which reads as a foreign app icon next to the other marks. |
 
 The ShareAlike terms above apply to adaptations. Every file here is shipped
@@ -45,6 +46,9 @@ own code.
 | `kubuntu`, `ubuntu-studio` | No published artwork repository or asset terms found. |
 | `lubuntu` | [lubuntu-team/artwork](https://github.com/lubuntu-team/artwork) is GPL-2.0, but ships only a 252×97 white-on-transparent wordmark for a boot splash — unusable on a light chip. A vector mark under those terms would qualify. |
 | `zorin` | Press page only; no redistribution terms. |
+| `raspberry-pi-os` | The [trademark rules](https://www.raspberrypi.com/trademark-rules/) permit the logo only "in connection with the sale or distribution of genuine Raspberry Pi products or services", which this is not. |
+| `truenas` | [iXsystems' trademark policy](https://www.truenas.com/legal/trademarks/) limits fair use to "text-only references to product or service names, not logos or other visual brand elements", and site assets need prior written consent. |
+| `batocera` | The repository's `COPYING` is Buildroot's build-system GPL-2.0 and says nothing about the brand. The mark itself is published only on the website, with no stated terms. |
 | `fedora` | The Fedora Council grants permission to include the official logo in an icon collection, unmodified except in size or file format, on condition that a specific trademark notice and a link to the brand guidelines are reproduced. The official vector file is not a public download — it is obtained by request from `logo@fedoraproject.org`. Doable, but it needs that request and the notice, so it has not been assumed. |
 
 The marks and names remain trademarks of their respective owners. This site is

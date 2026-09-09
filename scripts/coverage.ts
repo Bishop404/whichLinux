@@ -8,41 +8,30 @@ import distros from "../src/data/distros.json";
 import desktops from "../src/data/desktops.json";
 import questions from "../src/data/questions.json";
 import { recommend } from "../src/engine";
+import { everyAnswerSet } from "./answer-sets";
 
 const data = { distros, desktops, questions };
-const opts = (id) => questions.find((q) => q.id === id).options.map((o) => o.id);
-const subsets = (xs) =>
-  Array.from({ length: 2 ** xs.length - 1 }, (_, i) => xs.filter((_, b) => (i + 1) & (1 << b)));
-
-function* everyAnswerSet() {
-  for (const device of opts("device"))
-    for (const arch of opts("arch"))
-      for (const ram of opts("ram"))
-        for (const stability of opts("stability"))
-          for (const use of subsets(opts("use")))
-            for (const terminal of device === "server" ? [null] : opts("terminal"))
-              for (const familiarity of device === "server" ? [null] : opts("familiarity"))
-                for (const customize of device === "server" ? [null] : opts("customize"))
-                  for (const gpu of arch === "x86" || arch === "unsure" ? opts("gpu") : [null]) {
-                    const a = { device: [device], arch: [arch], ram: [ram], stability: [stability], use };
-                    if (terminal) a.terminal = [terminal];
-                    if (familiarity) a.familiarity = [familiarity];
-                    if (customize) a.customize = [customize];
-                    if (gpu) a.gpu = [gpu];
-                    yield a;
-                  }
-}
 
 const wins = new Map();
+/** The same tally, split by device class: see the note above the printout. */
+const winsByDevice = new Map();
+const setsByDevice = new Map();
 const weak = [];
 const relaxedCount = new Map();
 let total = 0;
 
-for (const answers of everyAnswerSet()) {
+for (const answers of everyAnswerSet(questions)) {
   const r = recommend(answers, data);
   const best = r.candidates[0];
   total++;
   wins.set(best.distro.id, (wins.get(best.distro.id) ?? 0) + 1);
+
+  const device = answers.device[0];
+  setsByDevice.set(device, (setsByDevice.get(device) ?? 0) + 1);
+  if (!winsByDevice.has(device)) winsByDevice.set(device, new Map());
+  const perDevice = winsByDevice.get(device);
+  perDevice.set(best.distro.id, (perDevice.get(best.distro.id) ?? 0) + 1);
+
   if (r.relaxed.length) {
     const k = r.relaxed.join("+");
     relaxedCount.set(k, (relaxedCount.get(k) ?? 0) + 1);
@@ -55,9 +44,8 @@ for (const answers of everyAnswerSet()) {
   }
 }
 
-const fmt = (a) => Object.entries(a).map(([k, v]) => `${k}=${v.join("+")}`).join(" ");
-
-console.log(`answer sets swept: ${total}\n`);
+const byDevice = [...setsByDevice].map(([d, n]) => `${d} ${n}`).join(", ");
+console.log(`answer sets swept: ${total}  (${byDevice})\n`);
 
 console.log("wins per distro:");
 for (const d of distros) {
@@ -75,12 +63,27 @@ for (const d of distros) {
   console.log(`  ${d.id.padEnd(20)} ${String(n).padStart(7)}  ${(pct < 0.1 ? pct.toFixed(3) : pct.toFixed(1)).padStart(7)}%  ${bar}`);
 }
 
+// The device classes are wildly uneven — the server flow asks fewer questions, so
+// it is a fraction of a percent of the sweep. A server distro judged against the
+// global total therefore looks broken when it is in fact winning its own class
+// outright, which is the same mistake the NEVER WINS case above guards against.
+console.log("\nwins within each device class:");
+for (const [device, sets] of setsByDevice) {
+  console.log(`  ${device} (${sets} sets)`);
+  const ranked = [...winsByDevice.get(device)].sort((a, b) => b[1] - a[1]);
+  for (const [id, n] of ranked) {
+    const pct = (n / sets) * 100;
+    console.log(`    ${id.padEnd(20)} ${String(n).padStart(7)}  ${pct.toFixed(1).padStart(6)}%  ${"█".repeat(Math.max(1, Math.round(pct / 2)))}`);
+  }
+}
+
 console.log(`\nrelaxed (no exact match) : ${[...relaxedCount].map(([k, v]) => `${k}=${v}`).join(", ") || "none"}`);
 
 console.log(`\nlow-confidence answer sets: ${weak.length} (${((weak.length / total) * 100).toFixed(1)}%)`);
 const byBucket = new Map();
 for (const w of weak) {
-  const k = `${w.answers.device}/${w.answers.arch}/${w.answers.ram}/${w.answers.use.join("+")}`;
+  const jobs = (w.answers.use ?? w.answers.serverUse ?? []).join("+");
+  const k = `${w.answers.device}/${w.answers.arch}/${w.answers.ram}/${jobs}`;
   if (!byBucket.has(k)) byBucket.set(k, []);
   byBucket.get(k).push(w);
 }

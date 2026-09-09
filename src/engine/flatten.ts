@@ -50,6 +50,12 @@ export function flatten(
     "use.creative": distro.use.creative,
     "use.gaming": distro.use.gaming,
 
+    // Absent on desktop records. 0 matches no key in a weight's `values`, so a
+    // desktop distro pulled in by relaxation scores nothing here rather than
+    // being credited or penalised for a job it was never rated on.
+    "server.files": distro.server?.files ?? 0,
+    "server.apps": distro.server?.apps ?? 0,
+
     de: edition.de,
     official: edition.official,
     "de.customizable": desktop?.customizable ?? 0,

@@ -98,5 +98,15 @@
     },
     "ramMinMb": 700,
     "customizable": 5
+  },
+  {
+    "id": "emulationstation",
+    "familiarity": {
+      "win11": 0,
+      "win7": 0,
+      "macos": 0
+    },
+    "ramMinMb": 300,
+    "customizable": 3
   }
 ]

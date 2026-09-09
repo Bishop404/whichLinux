@@ -6,6 +6,7 @@ import questionsJson from "../src/data/questions.json";
 
 import { nextQuestion, recommend, visibleQuestions } from "../src/engine";
 import type { Answers, Desktop, Distro, EngineData, Question } from "../src/engine";
+import { everyAnswerSet } from "../scripts/answer-sets";
 
 const data: EngineData = {
   distros: distrosJson as Distro[],
@@ -133,16 +134,66 @@ describe("persona goldens", () => {
     expect(["fedora", "popos", "opensuse-tumbleweed", "manjaro", "cachyos"]).toContain(ids[0]);
   });
 
-  it("home server gets a headless image and is never asked about desktops", () => {
-    const answers = a({ device: "server", arch: "x86", ram: "4to8", stability: "stable", use: "dev" });
+  it("home server gets a headless image and is only asked questions a server has", () => {
+    const answers = a({ device: "server", arch: "x86", ram: "4to8", stability: "stable", serverUse: "apps" });
     const best = top(answers);
     expect(["ubuntu-server", "debian"]).toContain(best.distro.id);
     expect(best.edition.de).toBe("none");
 
     const asked = visibleQuestions(data.questions, answers).map((q) => q.id);
-    expect(asked).not.toContain("familiarity");
-    expect(asked).not.toContain("customize");
-    expect(asked).not.toContain("terminal");
+    expect(asked).toEqual(["device", "arch", "ram", "stability", "serverUse"]);
+  });
+
+  it("a server for photos and backups gets a storage distro, not a general one", () => {
+    const best = top(a({
+      device: "server", arch: "x86", ram: "8plus", stability: "stable", serverUse: "files",
+    }));
+    expect(best.distro.id).toBe("truenas");
+    expect(best.edition.de).toBe("none");
+  });
+
+  it("drops the storage appliance on a machine too small to run it", () => {
+    // TrueNAS asks for 8 GB. Below that the memory filter must knock it out
+    // rather than recommend something that will not run.
+    const ids = topIds(a({
+      device: "server", arch: "x86", ram: "4to8", stability: "stable", serverUse: "files",
+    }));
+    expect(ids).not.toContain("truenas");
+    expect(ids[0]).toBe("opensuse-leap");
+  });
+
+  it("a Raspberry Pi server gets the OS written for the Pi", () => {
+    const best = top(a({
+      device: "server", arch: "arm", ram: "4to8", stability: "stable", serverUse: "files",
+    }));
+    expect(best.distro.id).toBe("raspberry-pi-os");
+  });
+
+  it("a console too small for Bazzite gets one that actually fits the memory", () => {
+    const result = recommend(a({
+      device: "console", arch: "x86", ram: "under4", terminal: "never",
+      stability: "stable", familiarity: "none", customize: "no", use: "gaming", gpu: "other",
+    }), data);
+    expect(result.candidates[0]!.distro.id).toBe("batocera");
+    // The whole point: it fits, so nothing has to be given up to reach it.
+    expect(result.relaxed).toEqual([]);
+  });
+
+  it("an ARM console is answered natively rather than by bending the device", () => {
+    const result = recommend(a({
+      device: "console", arch: "arm", ram: "4to8", terminal: "never",
+      stability: "stable", familiarity: "none", customize: "no", use: "gaming",
+    }), data);
+    expect(result.candidates[0]!.distro.id).toBe("batocera");
+    expect(result.relaxed).not.toContain("device");
+  });
+
+  it("hands the newest-software console user ChimeraOS rather than CachyOS", () => {
+    const best = top(a({
+      device: "console", arch: "x86", ram: "8plus", terminal: "never",
+      stability: "fresh", familiarity: "none", customize: "no", use: "gaming", gpu: "other",
+    }));
+    expect(best.distro.id).toBe("chimeraos");
   });
 });
 
@@ -174,35 +225,17 @@ describe("question flow", () => {
 
 /* -------------------------------------------------------------------------- */
 
-/** Every reachable combination of answers, including each non-empty subset of the multi-select. */
-function* everyAnswerSet(): Generator<Answers> {
-  const q = new Map(data.questions.map((x) => [x.id, x.options.map((o) => o.id)]));
-  const subsets = (xs: string[]) =>
-    Array.from({ length: 2 ** xs.length - 1 }, (_, i) =>
-      xs.filter((_, bit) => i + 1 & (1 << bit)));
-
-  for (const device of q.get("device")!)
-    for (const arch of q.get("arch")!)
-      for (const ram of q.get("ram")!)
-        for (const stability of q.get("stability")!)
-          for (const use of subsets(q.get("use")!))
-            for (const terminal of device === "server" ? [null] : q.get("terminal")!)
-              for (const familiarity of device === "server" ? [null] : q.get("familiarity")!)
-                for (const customize of device === "server" ? [null] : q.get("customize")!)
-                  for (const gpu of arch === "x86" || arch === "unsure" ? q.get("gpu")! : [null]) {
-                    const answers: Answers = { device: [device], arch: [arch], ram: [ram], stability: [stability], use };
-                    if (terminal) answers.terminal = [terminal];
-                    if (familiarity) answers.familiarity = [familiarity];
-                    if (customize) answers.customize = [customize];
-                    if (gpu) answers.gpu = [gpu];
-                    yield answers;
-                  }
-}
+/**
+ * Every reachable combination of answers, derived from the questions themselves
+ * so a new question or a new `showIf` cannot silently leave part of the flow
+ * untested. Shared with the analysis scripts in `scripts/`.
+ */
+const allAnswerSets = () => everyAnswerSet(data.questions);
 
 describe("invariants over every reachable answer set", () => {
   it("never returns an empty recommendation", () => {
     let count = 0;
-    for (const answers of everyAnswerSet()) {
+    for (const answers of allAnswerSets()) {
       const result = recommend(answers, data);
       if (result.candidates.length === 0) {
         throw new Error(`empty result for ${JSON.stringify(answers)}`);
@@ -213,7 +246,7 @@ describe("invariants over every reachable answer set", () => {
   });
 
   it("only reports a relaxed match when the answers genuinely have none", () => {
-    for (const answers of everyAnswerSet()) {
+    for (const answers of allAnswerSets()) {
       const { relaxed } = recommend(answers, data);
       // Architecture is the one constraint that must never be given up.
       expect(relaxed).not.toContain("arch");
@@ -222,15 +255,24 @@ describe("invariants over every reachable answer set", () => {
 
   it("every distro in the dataset wins at least one answer set", () => {
     const winners = new Set<string>();
-    for (const answers of everyAnswerSet()) {
+    for (const answers of allAnswerSets()) {
       winners.add(recommend(answers, data).candidates[0]!.distro.id);
     }
     const dead = data.distros.map((d) => d.id).filter((id) => !winners.has(id));
     expect(dead).toEqual([]);
   });
 
+  it("every server-class distro can be scored by the server question", () => {
+    // `serverUse` is the only question the server flow ranks on. A server record
+    // without these scores is invisible to it and can only ever tie.
+    const unscored = data.distros
+      .filter((d) => d.deviceClasses.includes("server") && !d.server)
+      .map((d) => d.id);
+    expect(unscored).toEqual([]);
+  });
+
   it("scores stay within their normalised bounds", () => {
-    for (const answers of everyAnswerSet()) {
+    for (const answers of allAnswerSets()) {
       for (const c of recommend(answers, data).candidates) {
         expect(c.normalised).toBeGreaterThanOrEqual(0);
         expect(c.normalised).toBeLessThanOrEqual(1);

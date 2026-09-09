@@ -8,6 +8,7 @@ const distros = distrosJson as Distro[];
 const approved = new Set([
   "ubuntu", "ubuntu-server", "debian", "bazzite", "cachyos", "endeavouros",
   "popos", "opensuse-leap", "opensuse-tumbleweed", "fedora-asahi", "omarchy",
+  "chimeraos",
 ]);
 
 describe("logo policy", () => {

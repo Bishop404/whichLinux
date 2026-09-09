@@ -13,38 +13,17 @@ import distros from "../src/data/distros.json";
 import desktops from "../src/data/desktops.json";
 import questions from "../src/data/questions.json";
 import { recommend, type Answers } from "../src/engine";
+import { everyAnswerSet } from "./answer-sets";
 
 const data = { distros, desktops, questions } as any;
 const qs = questions as any[];
-const opts = (id: string) => qs.find((q) => q.id === id).options.map((o: any) => o.id);
-const subsets = (xs: string[]) =>
-  Array.from({ length: 2 ** xs.length - 1 }, (_, i) => xs.filter((_, b) => (i + 1) & (1 << b)));
-
-function* everyAnswerSet(): Generator<Answers> {
-  for (const device of opts("device"))
-   for (const arch of opts("arch"))
-    for (const ram of opts("ram"))
-     for (const stability of opts("stability"))
-      for (const use of subsets(opts("use")))
-       for (const terminal of device === "server" ? [null] : opts("terminal"))
-        for (const familiarity of device === "server" ? [null] : opts("familiarity"))
-         for (const customize of device === "server" ? [null] : opts("customize"))
-          for (const gpu of arch === "x86" || arch === "unsure" ? opts("gpu") : [null]) {
-            const a: Answers = { device: [device], arch: [arch], ram: [ram], stability: [stability], use };
-            if (terminal) a.terminal = [terminal];
-            if (familiarity) a.familiarity = [familiarity];
-            if (customize) a.customize = [customize];
-            if (gpu) a.gpu = [gpu];
-            yield a;
-          }
-}
 
 /** Deterministic sampler, so the numbers are reproducible run to run. */
 let seed = 12345;
 const rand = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
 const SAMPLE = 4000;
 
-const all = [...everyAnswerSet()];
+const all = [...everyAnswerSet(questions as any)];
 console.log(`answer sets: ${all.length}\n`);
 
 interface Row { id: string; asked: number; decided: number; inert: string[] }

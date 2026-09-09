@@ -22,7 +22,9 @@ export type Firmware = "included" | "restricted";
 
 export type DesktopId =
   | "cinnamon" | "kde" | "gnome" | "xfce" | "lxqt"
-  | "mate" | "budgie" | "cosmic" | "pantheon" | "hyprland";
+  | "mate" | "budgie" | "cosmic" | "pantheon" | "hyprland"
+  /** Not a desktop: a gamepad-driven launcher that is the whole interface. */
+  | "emulationstation";
 
 /** Which prior OS a desktop feels like, 0 (not at all) to 3 (very much). */
 export interface Familiarity {
@@ -61,6 +63,17 @@ export interface UseCaseFit {
   gaming: number;
 }
 
+/**
+ * How well it suits each home-server job, 1..5. Only distros whose
+ * `deviceClasses` include `server` carry one; a desktop record has no meaningful
+ * answer to "how good is it at family backups", so it says nothing rather than
+ * guessing.
+ */
+export interface ServerFit {
+  files: number;
+  apps: number;
+}
+
 export interface Distro {
   id: string;
   family: Family;
@@ -80,6 +93,8 @@ export interface Distro {
   /** Newcomer-friendliness, 1..5. Doubles as the tie-break prior. */
   beginner: number;
   use: UseCaseFit;
+  /** Present on server-class distros only; see `ServerFit`. */
+  server?: ServerFit;
   homepage: string;
   docsUrl: string;
   /** An approved, locally shipped mark. Omit it when text is the safe fallback. */
