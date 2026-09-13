@@ -19,9 +19,6 @@ npm run wins mint  # show exactly which answers lead to one distro
 npm run influence  # how often each question actually changes the answer
 ```
 
-Deploy by uploading the contents of `dist/` to any static host. `.htaccess`
-covers compression and cache headers if that host is Apache.
-
 ## How the recommendation works
 
 Two separate mechanisms, kept deliberately apart:
@@ -96,12 +93,6 @@ blank, or drops a `{placeholder}`. English backs every other language, so a
 partial translation still renders.
 
 Language is chosen by `?lang=`, then a remembered choice, then the browser.
-
-## Things to know before this goes live
-
-- **Distro facts go stale.** Each record carries `lastReviewed`, and the result
-  page shows it. Re-check the dataset periodically; minimum memory, release
-  models and NVIDIA handling all drift.
 
 ## Licence
 

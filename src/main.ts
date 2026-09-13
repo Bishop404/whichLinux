@@ -23,6 +23,7 @@ const data: EngineData = {
 };
 
 const THEME_KEY = "which-linux:theme";
+const APP_NAME = "Which Linux?";
 
 let root: HTMLElement;
 let masthead: HTMLElement;
@@ -112,8 +113,8 @@ function render(): void {
 
   renderMasthead();
   document.title = question
-    ? `${t(`question.${question.id}.title`)} · ${t("app.title")}`
-    : t("app.title");
+    ? `${t(`question.${question.id}.title`)} · ${APP_NAME}`
+    : APP_NAME;
 }
 
 /* --------------------------------------------------------------- masthead -- */
@@ -152,7 +153,7 @@ function renderMasthead(): void {
   });
 
   masthead.append(
-    el("h1", { class: "brand", text: t("app.title") }),
+    el("h1", { class: "brand", text: APP_NAME }),
     el("span", { class: "masthead__spacer" }),
     ...(Object.keys(answers).length > 0 ? [copy, restartButton] : []),
     language,
