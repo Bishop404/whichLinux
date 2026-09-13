@@ -18,7 +18,7 @@ function editionLabel(candidate: Candidate): string {
 function logo(candidate: Candidate, className: string): HTMLElement | undefined {
   const chip = el("span", { class: `chip ${className}`.trim(), "aria-hidden": "true" });
   if (candidate.distro.logo) {
-    chip.append(el("img", { src: `/${candidate.distro.logo}`, alt: "" }));
+    chip.append(el("img", { src: `${import.meta.env.BASE_URL}${candidate.distro.logo}`, alt: "" }));
     return chip;
   }
 
