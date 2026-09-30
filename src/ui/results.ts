@@ -10,6 +10,35 @@ function editionLabel(candidate: Candidate): string {
   return t("result.edition", { desktop: t(`de.${candidate.edition.de}`) });
 }
 
+function socialLink(label: string, href: string, icon: "email" | "github"): HTMLAnchorElement {
+  const link = el("a", {
+    class: "result-footer__link",
+    href,
+    "aria-label": label,
+    title: label,
+    ...(icon === "github" ? { target: "_blank", rel: "noopener noreferrer" } : {}),
+  });
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
+
+  const path = document.createElementNS(svg.namespaceURI, "path");
+  if (icon === "email") {
+    path.setAttribute("d", "M3 5h18v14H3z M3 6l9 7 9-7");
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", "currentColor");
+    path.setAttribute("stroke-width", "1.8");
+    path.setAttribute("stroke-linejoin", "round");
+  } else {
+    path.setAttribute("fill", "currentColor");
+    path.setAttribute("d", "M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.08c-3.1.68-3.76-1.32-3.76-1.32-.5-1.3-1.24-1.65-1.24-1.65-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.93.1-.72.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.04-1.15 3.04-1.15.61 1.54.23 2.68.12 2.96.71.78 1.14 1.78 1.14 3 0 4.29-2.61 5.23-5.1 5.51.4.35.76 1.03.76 2.08V22c0 .29.2.64.77.53A11.1 11.1 0 0 0 12 .9Z");
+  }
+  svg.append(path);
+  link.append(svg);
+  return link;
+}
+
 /**
  * Only approved source assets are displayed. They are loaded as ordinary images
  * so application code cannot recolour, rewrite, or otherwise alter the mark.
@@ -164,5 +193,9 @@ export function renderResults(result: Recommendation): HTMLElement {
     // Nominative use of these marks depends on not implying endorsement, so the
     // disclaimer belongs in front of visitors, not only in the repo.
     el("p", { class: "reviewed", text: t("result.trademarks") }),
+    el("footer", { class: "result-footer" }, [
+      socialLink(t("result.emailContact"), "mailto:hello@whichlinux.eu", "email"),
+      socialLink(t("result.github"), "https://github.com/Bishop404/whichLinux", "github"),
+    ]),
   ]);
 }

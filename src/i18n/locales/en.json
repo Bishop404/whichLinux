@@ -79,6 +79,8 @@
   "result.reviewed": "Distribution facts last checked {date}.",
   "result.disclaimer": "This is a starting point, not a verdict. Every option here is a good operating system — if the first one doesn't click, the alternatives are genuinely worth trying.",
   "result.trademarks": "Logos are trademarks of their respective projects. This site is not affiliated with, nor endorsed by, any of them.",
+  "result.emailContact": "Email Which Linux?",
+  "result.github": "Which Linux? on GitHub",
   "result.relaxed": "Nothing matched every single answer, so these are the closest fits. What we had to bend: {what}.",
   "result.relaxed.terminal": "how much terminal you wanted",
   "result.relaxed.ram": "the memory you have",

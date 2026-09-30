@@ -79,6 +79,8 @@
   "result.reviewed": "Dane o dystrybucjach sprawdzono {date}.",
   "result.disclaimer": "To punkt wyjścia, nie wyrok. Każda z tych opcji to dobry system — jeśli pierwsza nie przypadnie Ci do gustu, alternatywy naprawdę warto wypróbować.",
   "result.trademarks": "Logotypy są znakami towarowymi odpowiednich projektów. Ta strona nie jest z nimi powiązana ani wspierana przez żaden z nich.",
+  "result.emailContact": "Napisz do Which Linux?",
+  "result.github": "Which Linux? w serwisie GitHub",
   "result.relaxed": "Nic nie pasowało do wszystkich odpowiedzi, więc oto najbliższe dopasowania. Musieliśmy pójść na kompromis w kwestii: {what}.",
   "result.relaxed.terminal": "oczekiwania wobec terminala",
   "result.relaxed.ram": "ilość pamięci",

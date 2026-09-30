@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://whichlinux.eu/sitemap.xml

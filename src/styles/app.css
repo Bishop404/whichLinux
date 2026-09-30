@@ -432,6 +432,31 @@ main {
 }
 .reviewed { margin: 0.6rem 0 0; font: 0.75rem/1.5 var(--mono); color: var(--fg-muted); }
 
+.result-footer {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border);
+}
+.result-footer__link {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  color: var(--fg-muted);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.result-footer__link:hover,
+.result-footer__link:focus-visible {
+  color: var(--accent-text);
+  border-color: var(--accent-text);
+}
+.result-footer__link:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 3px; }
+.result-footer__link svg { width: 1.15rem; height: 1.15rem; }
+
 /* ---------------------------------------------------------------- motion -- */
 
 @media (prefers-reduced-motion: no-preference) {
