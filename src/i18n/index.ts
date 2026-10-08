@@ -1,9 +1,9 @@
 import en from "./locales/en.json";
 
-export type Locale = "en" | "pl";
-
-export const LOCALES: readonly Locale[] = ["en", "pl"] as const;
-export const LOCALE_NAMES: Record<Locale, string> = { en: "English", pl: "Polski" };
+export type Locale = "en" | "pl" | "es" | "ca";
+  
+export const LOCALES: readonly Locale[] = ["en", "pl", "es", "ca"] as const;
+export const LOCALE_NAMES: Record<Locale, string> = { en: "English", pl: "Polski", es: "Español", ca: "Català" };
 
 type Dictionary = Record<string, string>;
 
@@ -15,6 +15,8 @@ type Dictionary = Record<string, string>;
 const loaders: Record<Locale, () => Promise<{ default: Dictionary }>> = {
   en: () => Promise.resolve({ default: en as Dictionary }),
   pl: () => import("./locales/pl.json"),
+  es: () => import("./locales/es.json"),
+  ca: () => import("./locales/ca.json"),
 };
 
 const STORAGE_KEY = "which-linux:locale";
